@@ -1,33 +1,30 @@
-import localFont from "next/font/local"
+import { NextIntlClientProvider } from "next-intl"
+import { generalFont } from "@/config/fonts"
 
 import type { Metadata } from "next"
 
 import "./globals.css"
-
-const geistSans = localFont({
-	src: "./fonts/GeistVF.woff",
-	variable: "--font-geist-sans",
-	weight: "100 900",
-})
-const geistMono = localFont({
-	src: "./fonts/GeistMonoVF.woff",
-	variable: "--font-geist-mono",
-	weight: "100 900",
-})
+import { getMessages } from "next-intl/server"
 
 export const metadata: Metadata = {
 	title: "San Pedro de Atacama",
 	description: "San Pedro de Atacama",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
+	params: { locale },
 }: Readonly<{
-	children: React.ReactNode
-}>) {
+	children: React.ReactElement
+	params: { locale: string }
+}>): Promise<React.ReactElement> {
+	const messages = await getMessages()
+
 	return (
-		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+		<html lang={locale}>
+			<NextIntlClientProvider messages={messages}>
+				<body className={`${generalFont.className} antialiased`}>{children}</body>
+			</NextIntlClientProvider>
 		</html>
 	)
 }
