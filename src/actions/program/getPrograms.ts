@@ -24,7 +24,7 @@ export const getProgramsWithTranslations = async (
 				program_translation,
 			})
 			.from(program_translation)
-			.leftJoin(program, eq(program.id, program_translation.program_id))
+			.innerJoin(program, eq(program.id, program_translation.program_id))
 			.where(eq(program_translation.locale, locale))
 			.limit(pageSize)
 			.offset((page - 1) * pageSize)
@@ -47,7 +47,7 @@ export const getProgramsWithTranslations = async (
 export const getProgramBySlug = async (
 	slug: string,
 	locale: Locale = "es"
-): Promise<ProgramWithTranslations> => {
+): Promise<ProgramWithTranslations | null> => {
 	try {
 		const dbProgram = await db
 			.select({
@@ -55,16 +55,13 @@ export const getProgramBySlug = async (
 				program_translation,
 			})
 			.from(program_translation)
-			.leftJoin(program, eq(program.id, program_translation.program_id))
+			.innerJoin(program, eq(program.id, program_translation.program_id))
 			.where(and(eq(program_translation.locale, locale), eq(program.slug, slug)))
 
 		return dbProgram[0]
 	} catch (error) {
 		console.error(error)
-		return {
-			program: null,
-			program_translation: null,
-		}
+		return null
 	}
 }
 

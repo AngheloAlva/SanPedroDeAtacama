@@ -1,10 +1,11 @@
 "use client"
 
 import { createExcursionSchema } from "@/lib/schemas/admin/createExcursion.schema"
+import { createExcursion } from "@/actions/excursion/createExcursion"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Link, useRouter } from "@/i18n/routing"
 import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
-import { Link, useRouter } from "@/i18n/routing"
 import { useState } from "react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -29,7 +30,6 @@ import {
 
 import type { zone } from "@/db/schema/zone"
 import type { z } from "zod"
-import { createExcursion } from "@/actions/excursion/createExcursion"
 
 export default function CreateExcursionForm({
 	zones,
@@ -44,8 +44,6 @@ export default function CreateExcursionForm({
 		resolver: zodResolver(createExcursionSchema),
 		defaultValues: {
 			slug: "",
-			price: "0",
-			zoneId: "",
 		},
 	})
 

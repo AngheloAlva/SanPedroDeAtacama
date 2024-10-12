@@ -1,1 +1,11 @@
-{}
+{
+  "Navbar": {
+    "excursions": "Excursiones",
+    "programs": "Programas",
+    "services": "Servicios",
+    "book": "Reserva",
+    "theDestine": "Acerca del destino",
+    "aboutUs": "Sobre nosotros",
+    "language": "Idioma"
+  }
+}

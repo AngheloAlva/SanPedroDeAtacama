@@ -1,8 +1,10 @@
 "use client"
 
 import { Link, usePathname } from "@/i18n/routing"
+import { useZones } from "@/hooks/useZones"
 
 import { ChevronLeft, ChevronRight, PlusCircle } from "lucide-react"
+import ZonesTable from "@/components/zones/admin/ZonesTable"
 import { Button } from "@/components/ui/button"
 import {
 	Card,
@@ -18,8 +20,6 @@ import {
 	PaginationContent,
 	PaginationEllipsis,
 } from "@/components/ui/pagination"
-import { useZones } from "@/hooks/useZones"
-import ZonesTable from "@/components/zones/admin/ZonesTable"
 
 export default function AdminZonesPage(): React.ReactElement {
 	const pathName = usePathname()
@@ -28,7 +28,7 @@ export default function AdminZonesPage(): React.ReactElement {
 		useZones("es", pathName)
 
 	return (
-		<main className="mx-auto w-full max-w-screen-xl gap-4 p-4 sm:px-6 sm:py-0 md:mt-4">
+		<main className="mx-auto w-full max-w-screen-lg gap-4 p-4 sm:px-6 sm:py-0 md:mt-4">
 			<section className="flex flex-col gap-4">
 				<div className="ml-auto flex items-center gap-2">
 					{/* <Button variant="outline" className="h-7 gap-1">

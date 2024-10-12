@@ -52,7 +52,7 @@ export const useZones = (locale: Locale, pathName: string): UseZoneResponse => {
 		}
 
 		void fetchZones()
-	}, [locale, zones, searchPageSize, page])
+	}, [page, searchPageSize])
 
 	const createQueryString = useCallback(
 		(name: string, value: string) => {

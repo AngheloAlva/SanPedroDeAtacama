@@ -14,8 +14,8 @@ export default function ZonesTable({ zones, isLoading }: ProgramsTableProps): Re
 		<Table>
 			<TableHeader>
 				<TableRow>
-					<TableHead>Slug</TableHead>
-					<TableHead>
+					<TableHead className="w-full">Slug</TableHead>
+					<TableHead className="w-full">
 						<span className="sr-only">Acciones</span>
 					</TableHead>
 				</TableRow>

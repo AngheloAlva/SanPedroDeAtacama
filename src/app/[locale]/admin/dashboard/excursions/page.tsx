@@ -46,16 +46,16 @@ export default function AdminExcursionsPage(): React.ReactElement {
 					<Link href={"/admin/dashboard/excursions/create"}>
 						<Button className="h-9 gap-1">
 							<PlusCircle className="h-4 w-4" />
-							<span className="whitespace-nowrap">Add Product</span>
+							<span className="whitespace-nowrap">Add Excursion</span>
 						</Button>
 					</Link>
 				</div>
 
 				<Card>
 					<CardHeader>
-						<CardTitle>Products</CardTitle>
+						<CardTitle>Excursions</CardTitle>
 						<CardDescription>
-							Manage your products and view their sales performance.
+							Manage your excursions and view their sales performance.
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
@@ -63,7 +63,7 @@ export default function AdminExcursionsPage(): React.ReactElement {
 					</CardContent>
 					<CardFooter>
 						<div className="text-xs text-muted-foreground">
-							Showing <strong>1-10</strong> of <strong>{totalCount}</strong> products
+							Showing <strong>1-10</strong> of <strong>{totalCount}</strong> excursions
 						</div>
 					</CardFooter>
 				</Card>

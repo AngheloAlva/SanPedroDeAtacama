@@ -12,7 +12,7 @@ import type { Locale } from "@/types/locales"
 export const getZoneBySlug = async (
 	slug: string,
 	locale: Locale = "es"
-): Promise<ZoneWithTranslations> => {
+): Promise<ZoneWithTranslations | null> => {
 	try {
 		const dbZone = await db
 			.select({
@@ -20,16 +20,13 @@ export const getZoneBySlug = async (
 				zone_translation,
 			})
 			.from(zone_translation)
-			.leftJoin(zone, eq(zone.id, zone_translation.zone_id))
+			.innerJoin(zone, eq(zone.id, zone_translation.zone_id))
 			.where(and(eq(zone_translation.locale, locale), eq(zone.slug, slug)))
 
 		return dbZone[0]
 	} catch (error) {
 		console.error(error)
-		return {
-			zone: null,
-			zone_translation: null,
-		}
+		return null
 	}
 }
 

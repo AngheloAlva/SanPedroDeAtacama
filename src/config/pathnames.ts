@@ -17,18 +17,6 @@ export const pathnames = {
 		pt: "/excursoes/[excursion-slug]",
 		fr: "/excursions/[excursion-slug]",
 	},
-	"/auth/login": {
-		es: "/auth/iniciar-sesion",
-		en: "/auth/login",
-		pt: "/auth/login",
-		fr: "/auth/login",
-	},
-	"/auth/register": {
-		es: "/auth/registrarse",
-		en: "/auth/register",
-		pt: "/auth/register",
-		fr: "/auth/register",
-	},
 	"/cart": {
 		es: "/carrito",
 		en: "/cart",
@@ -90,5 +78,23 @@ export const pathnames = {
 		en: "/admin/dashboard/programs/create",
 		pt: "/admin/dashboard/programas/criar",
 		fr: "/admin/dashboard/programs/create",
+	},
+	"/admin/dashboard/zones": {
+		es: "/admin/panel/zonas",
+		en: "/admin/dashboard/zones",
+		pt: "/admin/dashboard/zonas",
+		fr: "/admin/dashboard/zones",
+	},
+	"/admin/dashboard/zones/[zoneSlug]": {
+		es: "/admin/panel/zonas/[zoneSlug]",
+		en: "/admin/dashboard/zones/[zoneSlug]",
+		pt: "/admin/dashboard/zonas/[zoneSlug]",
+		fr: "/admin/dashboard/zones/[zoneSlug]",
+	},
+	"/admin/dashboard/zones/create": {
+		es: "/admin/panel/zonas/crear",
+		en: "/admin/dashboard/zones/create",
+		pt: "/admin/dashboard/zonas/criar",
+		fr: "/admin/dashboard/zones/create",
 	},
 }

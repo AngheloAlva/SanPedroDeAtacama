@@ -37,8 +37,10 @@ import type { z } from "zod"
 
 export default function UpdateAllExcursionForm({
 	excursion: { excursion, excursion_translation },
+	locale,
 }: {
 	excursion: ExcursionWithTranslation
+	locale: string
 }): React.ReactElement {
 	const [imageResources, setImageResources] = useState<string[]>(excursion?.images ?? [])
 	const [isLoading, setIsLoading] = useState(false)
@@ -57,6 +59,7 @@ export default function UpdateAllExcursionForm({
 			cancelation: excursion_translation?.cancelation ?? "",
 			description: excursion_translation?.description ?? "",
 			faq: excursion_translation?.faq ?? [{ question: "", answer: "" }],
+			inDetail: excursion_translation?.in_detail ?? [{ title: "", description: "" }],
 			whatIncludes: (excursion_translation?.what_includes ?? []).map((item) => ({ item })),
 			whatWillYouDo: excursion_translation?.what_will_you_do ?? [{ title: "", description: "" }],
 			whatYouShouldBring: (excursion_translation?.what_you_should_bring ?? []).map((item) => ({
@@ -141,7 +144,7 @@ export default function UpdateAllExcursionForm({
 			setIsLoading(true)
 
 			const res = await updateExcursionWithTranslation(
-				"es",
+				locale as "es",
 				excursion?.id as string,
 				excursion_translation?.id as string,
 				values,

@@ -24,7 +24,7 @@ export const getExcursionsWithTranslations = async (
 				excursion_translation,
 			})
 			.from(excursion_translation)
-			.leftJoin(excursion, eq(excursion.id, excursion_translation.excursion_id))
+			.innerJoin(excursion, eq(excursion.id, excursion_translation.excursion_id))
 			.where(eq(excursion_translation.locale, locale))
 			.limit(pageSize)
 			.offset((page - 1) * pageSize)
@@ -47,7 +47,7 @@ export const getExcursionsWithTranslations = async (
 export const getExcursionBySlug = async (
 	slug: string,
 	locale: Locale = "es"
-): Promise<ExcursionWithTranslation> => {
+): Promise<ExcursionWithTranslation | null> => {
 	try {
 		const dbExcursion = await db
 			.select({
@@ -55,16 +55,13 @@ export const getExcursionBySlug = async (
 				excursion_translation,
 			})
 			.from(excursion_translation)
-			.leftJoin(excursion, eq(excursion.id, excursion_translation.excursion_id))
+			.innerJoin(excursion, eq(excursion.id, excursion_translation.excursion_id))
 			.where(and(eq(excursion_translation.locale, locale), eq(excursion.slug, slug)))
 
 		return dbExcursion[0]
 	} catch (error) {
 		console.error(error)
-		return {
-			excursion: null,
-			excursion_translation: null,
-		}
+		return null
 	}
 }
 

@@ -52,7 +52,7 @@ export const useExcusions = (locale: Locale, pathName: string): UseExcursionResp
 		}
 
 		void fetchExcursions()
-	}, [locale, page, searchPageSize])
+	}, [page, searchPageSize])
 
 	const createQueryString = useCallback(
 		(name: string, value: string) => {

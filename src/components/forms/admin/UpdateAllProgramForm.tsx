@@ -37,8 +37,10 @@ import type { z } from "zod"
 
 export default function UpdateAllProgramForm({
 	program: { program, program_translation },
+	locale,
 }: {
 	program: ProgramWithTranslations
+	locale: string
 }): React.ReactElement {
 	const [imageResources, setImageResources] = useState<string[]>(program?.images ?? [])
 	const [isLoading, setIsLoading] = useState(false)
@@ -130,7 +132,7 @@ export default function UpdateAllProgramForm({
 			setIsLoading(true)
 
 			const res = await updateProgramWithTranslation(
-				"es",
+				locale as "es",
 				program?.id as string,
 				program_translation?.id as string,
 				values,

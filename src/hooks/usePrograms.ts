@@ -52,7 +52,7 @@ export const usePrograms = (locale: Locale, pathName: string): UseProgramRespons
 		}
 
 		void fetchPrograms()
-	}, [locale, page, searchPageSize])
+	}, [page, searchPageSize])
 
 	const createQueryString = useCallback(
 		(name: string, value: string) => {

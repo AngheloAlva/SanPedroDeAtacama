@@ -9,6 +9,7 @@ import { excursion } from "@/db/schema/excursion"
 
 import type { updateExcursionSchema } from "@/lib/schemas/admin/updateExcursion.schema"
 import type { Locale } from "@/types/locales"
+import { revalidatePath } from "next/cache"
 
 export const updateExcursion = async (
 	id: string,
@@ -71,6 +72,8 @@ export const updateExcursionWithTranslation = async (
 				.update(excursion_translation)
 				.set({
 					...data,
+					title: data.name,
+					in_detail: data.inDetail,
 					what_will_you_do: data.whatWillYouDo,
 					what_includes: data.whatIncludes.map((item) => item.item),
 					what_you_should_bring: data.whatYouShouldBring.map((item) => item.item),
@@ -82,6 +85,8 @@ export const updateExcursionWithTranslation = async (
 					)
 				)
 		})
+
+		revalidatePath(`/admin/dashboard/excursions/${data.slug}`)
 
 		return true
 	} catch (error) {

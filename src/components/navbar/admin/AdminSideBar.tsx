@@ -1,10 +1,9 @@
 import { Link } from "@/i18n/routing"
 import Image from "next/image"
 
-import { HomeIcon, BoxModelIcon, ListBulletIcon, HamburgerMenuIcon } from "@radix-ui/react-icons"
+import { PiMapPinSimpleArea, PiPackage, PiMountains, PiShoppingCart, PiHouse, PiList } from "react-icons/pi"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { IoMdCart } from "react-icons/io"
 import SideBarItem from "./SideBarItem"
 
 export default function AdminSideBar(): React.ReactElement {
@@ -12,7 +11,7 @@ export default function AdminSideBar(): React.ReactElement {
 		<Sheet>
 			<SheetTrigger asChild>
 				<Button size="icon" variant="outline" className="sm:hidden">
-					<HamburgerMenuIcon className="h-5 w-5" />
+					<PiList className="h-5 w-5" />
 					<span className="sr-only">Toggle Menu</span>
 				</Button>
 			</SheetTrigger>
@@ -35,25 +34,31 @@ export default function AdminSideBar(): React.ReactElement {
 					<SideBarItem
 						href="/admin/dashboard"
 						title="Dashboard"
-						icon={<HomeIcon className="h-5 w-5" />}
+						icon={<PiHouse className="h-5 w-5" />}
 						actualPath="/admin/dashboard"
 					/>
 					<SideBarItem
-						href="/admin/orders"
+						href="/admin/dashboard/orders"
 						title="Orders"
-						icon={<IoMdCart className="h-5 w-5" />}
+						icon={<PiShoppingCart className="h-5 w-5" />}
 						actualPath="/admin/dashboard"
 					/>
 					<SideBarItem
-						href="/admin/excursions"
+						href="/admin/dashboard/excursions"
 						title="Excursions"
-						icon={<BoxModelIcon className="h-5 w-5" />}
+						icon={<PiMountains className="h-5 w-5" />}
 						actualPath="/admin/dashboard"
 					/>
 					<SideBarItem
-						href="/admin/programs"
+						href="/admin/dashboard/programs"
 						title="Programs"
-						icon={<ListBulletIcon className="h-5 w-5" />}
+						icon={<PiPackage className="h-5 w-5" />}
+						actualPath="/admin/dashboard"
+					/>
+					<SideBarItem
+						href="/admin/dashboard/zones"
+						title="Zones"
+						icon={<PiMapPinSimpleArea className="h-5 w-5" />}
 						actualPath="/admin/dashboard"
 					/>
 				</nav>

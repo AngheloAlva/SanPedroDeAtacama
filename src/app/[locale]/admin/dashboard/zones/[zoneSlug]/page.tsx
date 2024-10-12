@@ -19,7 +19,7 @@ export default async function AdminZoneBySlugPage({
 
 	return (
 		<main className="grid flex-1 items-start gap-4 p-4 sm:px-6 md:gap-6">
-			<UpdateAllZoneForm zone={dbZone} />
+			<UpdateAllZoneForm zone={dbZone} locale={locale} />
 		</main>
 	)
 }

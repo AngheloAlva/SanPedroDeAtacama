@@ -27,8 +27,10 @@ import type { z } from "zod"
 
 export default function UpdateAllZoneForm({
 	zone: { zone, zone_translation },
+	locale,
 }: {
 	zone: ZoneWithTranslations
+	locale: string
 }): React.ReactElement {
 	const [isLoading, setIsLoading] = useState(false)
 	const { toast } = useToast()
@@ -47,26 +49,26 @@ export default function UpdateAllZoneForm({
 			setIsLoading(true)
 
 			const res = await updateZoneWithTranslation(
-				"es",
+				locale as "es",
 				zone?.id as string,
 				zone_translation?.id as string,
 				values
 			)
 
 			if (!res) {
-				throw new Error("Failed to update excursion")
+				throw new Error("Failed to update zone")
 			}
 
 			toast({
-				title: "Excursion updated",
-				description: "The excursion has been updated successfully",
+				title: "Zone updated",
+				description: "The zone has been updated successfully",
 				duration: 5000,
 			})
 		} catch (error) {
 			console.log(error)
 			toast({
-				title: "Failed to update excursion",
-				description: "An error occurred while updating the excursion",
+				title: "Failed to update zone",
+				description: "An error occurred while updating the zone",
 				variant: "destructive",
 				duration: 5000,
 			})
@@ -83,7 +85,7 @@ export default function UpdateAllZoneForm({
 					className="mx-auto grid w-full max-w-screen-xl flex-1 auto-rows-max gap-4"
 				>
 					<div className="flex items-center gap-4">
-						<Link href={"/admin/dashboard/programs"}>
+						<Link href={"/admin/dashboard/zones"}>
 							<Button variant="outline" size="icon" className="h-7 w-7">
 								<ChevronLeft className="h-4 w-4" />
 								<span className="sr-only">Back</span>
@@ -99,7 +101,7 @@ export default function UpdateAllZoneForm({
 							disabled={isLoading}
 							className="hidden md:ml-auto md:flex"
 						>
-							Guardar Excursion
+							Guardar Zona
 						</Button>
 					</div>
 
@@ -166,7 +168,7 @@ export default function UpdateAllZoneForm({
 					</div>
 
 					<Button disabled={isLoading} type="submit" size="sm" className="md:hidden">
-						Save Product
+						Save Zone
 					</Button>
 				</form>
 			</Form>

@@ -1,8 +1,7 @@
 import { Link } from "@/i18n/routing"
 import Image from "next/image"
 
-import { BoxModelIcon, HomeIcon, ListBulletIcon } from "@radix-ui/react-icons"
-import { IoMdCart } from "react-icons/io"
+import { PiMapPinSimpleArea, PiPackage, PiMountains, PiShoppingCart, PiHouse } from "react-icons/pi"
 import TooltipItem from "./TooltipItem"
 
 export default function AdminNavbar(): React.ReactElement {
@@ -26,13 +25,13 @@ export default function AdminNavbar(): React.ReactElement {
 				<TooltipItem
 					label="Dashboard"
 					href="/admin/dashboard"
-					icon={<HomeIcon className="h-5 w-5" />}
+					icon={<PiHouse className="h-5 w-5" />}
 					actualPath="/admin/dashboard"
 				/>
 				<TooltipItem
 					label="Orders"
 					href="/admin/dashboard/orders"
-					icon={<IoMdCart className="h-5 w-5" />}
+					icon={<PiShoppingCart className="h-5 w-5" />}
 					actualPath="/admin/dashboard"
 				/>
 
@@ -40,14 +39,21 @@ export default function AdminNavbar(): React.ReactElement {
 					label="Excursions"
 					href="/admin/dashboard/excursions"
 					actualPath="/admin/dashboard"
-					icon={<BoxModelIcon className="h-5 w-5" />}
+					icon={<PiMountains className="h-5 w-5" />}
 				/>
 
 				<TooltipItem
 					label="Programs"
 					href="/admin/dashboard/programs"
 					actualPath="/admin/dashboard"
-					icon={<ListBulletIcon className="h-5 w-5" />}
+					icon={<PiPackage className="h-5 w-5" />}
+				/>
+
+				<TooltipItem
+					label="Zones"
+					href="/admin/dashboard/zones"
+					actualPath="/admin/dashboard"
+					icon={<PiMapPinSimpleArea className="h-5 w-5" />}
 				/>
 			</nav>
 		</aside>

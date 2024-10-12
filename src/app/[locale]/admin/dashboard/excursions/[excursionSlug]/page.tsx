@@ -9,9 +9,9 @@ export default async function AdminExcursionsBySlugPage({
 }): Promise<React.ReactElement> {
 	const dbExcursion = await getExcursionBySlug(excursionSlug, locale as "es")
 
-	if (!dbExcursion) {
+	if (!dbExcursion.excursion) {
 		return (
-			<main className="grid flex-1 items-start gap-4 p-4 text-xl font-bold sm:px-6 md:gap-6">
+			<main className="flex items-start gap-4 p-4 text-xl font-bold sm:px-6 md:gap-6">
 				Excursion not found
 			</main>
 		)
@@ -19,7 +19,7 @@ export default async function AdminExcursionsBySlugPage({
 
 	return (
 		<main className="grid flex-1 items-start gap-4 p-4 sm:px-6 md:gap-6">
-			<UpdateAllExcursionForm excursion={dbExcursion} />
+			<UpdateAllExcursionForm excursion={dbExcursion} locale={locale} />
 		</main>
 	)
 }

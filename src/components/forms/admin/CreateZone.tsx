@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form"
 
 const createZoneSchema = z.object({
-	slug: z.string().min(3),
+	slug: z.string().min(3).toLowerCase(),
 })
 
 export default function CreateZoneForm(): React.ReactElement {
@@ -41,6 +41,7 @@ export default function CreateZoneForm(): React.ReactElement {
 		try {
 			setIsLoading(true)
 
+			console.log("Creating zone", values)
 			const res = await createZone(values.slug)
 
 			if (!res) {
@@ -52,6 +53,8 @@ export default function CreateZoneForm(): React.ReactElement {
 				description: "The zone has been created successfully",
 				duration: 5000,
 			})
+
+			router.push("/admin/dashboard/zones")
 		} catch (error) {
 			console.log(error)
 			toast({
@@ -60,8 +63,8 @@ export default function CreateZoneForm(): React.ReactElement {
 				variant: "destructive",
 				duration: 5000,
 			})
-		} finally {
-			router.push("/admin/dashboard/zones")
+
+			setIsLoading(false)
 		}
 	}
 
@@ -83,12 +86,7 @@ export default function CreateZoneForm(): React.ReactElement {
 							Create Zone
 						</h1>
 
-						<Button
-							type="submit"
-							size="sm"
-							disabled={isLoading}
-							className="hidden md:ml-auto md:flex"
-						>
+						<Button type="submit" disabled={isLoading} className="hidden md:ml-auto md:flex">
 							Create Zone
 						</Button>
 					</div>
@@ -119,8 +117,8 @@ export default function CreateZoneForm(): React.ReactElement {
 						</CardContent>
 					</Card>
 
-					<Button disabled={isLoading} type="submit" size="sm" className="md:hidden">
-						Save Program
+					<Button disabled={isLoading} type="submit" size="lg" className="md:hidden">
+						Save Zone
 					</Button>
 				</form>
 			</Form>

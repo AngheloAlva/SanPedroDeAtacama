@@ -29,11 +29,12 @@ export default function LanguagePicker({ className }: { className?: string }): R
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				className={cn(
-					"flex transform items-center text-base font-semibold hover:text-[#e1713f]",
+					"flex transform items-center text-base font-semibold hover:text-[#e1713f] focus:outline-none",
 					className
 				)}
-			></DropdownMenuTrigger>
-			<LanguageIcon />
+			>
+				<LanguageIcon />
+			</DropdownMenuTrigger>
 			<DropdownMenuContent className="z-[110]">
 				<DropdownMenuLabel>{t("language")}</DropdownMenuLabel>
 				<DropdownMenuSeparator />

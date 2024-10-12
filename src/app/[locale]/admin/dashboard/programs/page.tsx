@@ -53,9 +53,9 @@ export default function AdminProgramsPage(): React.ReactElement {
 
 				<Card>
 					<CardHeader>
-						<CardTitle>Products</CardTitle>
+						<CardTitle>Programs</CardTitle>
 						<CardDescription>
-							Manage your products and view their sales performance.
+							Manage your programs and view their sales performance.
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
@@ -63,7 +63,7 @@ export default function AdminProgramsPage(): React.ReactElement {
 					</CardContent>
 					<CardFooter>
 						<div className="text-xs text-muted-foreground">
-							Showing <strong>1-10</strong> of <strong>{totalCount}</strong> products
+							Showing <strong>1-10</strong> of <strong>{totalCount}</strong> programs
 						</div>
 					</CardFooter>
 				</Card>

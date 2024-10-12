@@ -12,7 +12,7 @@ export default function ZoneTableItem({ slug }: Props): React.ReactElement {
 		<TableRow>
 			<TableCell className="font-medium">{slug}</TableCell>
 			<TableCell>
-				<Link className="w-full" href={`/admin/dashboard/programs/${slug}`}>
+				<Link className="w-full" href={`/admin/dashboard/zones/${slug}`}>
 					<Button size={"sm"} variant="outline">
 						Edit
 					</Button>
