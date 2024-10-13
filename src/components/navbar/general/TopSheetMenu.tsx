@@ -21,7 +21,7 @@ export default function TopSheetMenu(): React.ReactElement {
 	return (
 		<Sheet>
 			<SheetTrigger className="rounded-lg hover:text-[#e1713f] focus:outline-none">
-				<PiList className="h-5 w-auto" />
+				<PiList className="h-6 w-auto stroke-2" />
 			</SheetTrigger>
 			<SheetContent side={"top"} className="z-[120] h-screen overflow-y-scroll bg-black text-white">
 				<SheetTitle className="sr-only">MENU</SheetTitle>

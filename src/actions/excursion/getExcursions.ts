@@ -1,6 +1,6 @@
 "use server"
 
-import { and, count, eq } from "drizzle-orm"
+import { and, count, eq, ne } from "drizzle-orm"
 import { db } from "@/db"
 
 import { excursion_translation } from "@/db/schema/excursion-translation"
@@ -25,7 +25,13 @@ export const getExcursionsWithTranslations = async (
 			})
 			.from(excursion_translation)
 			.innerJoin(excursion, eq(excursion.id, excursion_translation.excursion_id))
-			.where(eq(excursion_translation.locale, locale))
+			.where(
+				and(
+					eq(excursion_translation.locale, locale),
+					ne(excursion_translation.title, ""),
+					eq(excursion.is_active, true)
+				)
+			)
 			.limit(pageSize)
 			.offset((page - 1) * pageSize)
 

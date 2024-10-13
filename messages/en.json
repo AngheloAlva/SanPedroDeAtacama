@@ -4211,6 +4211,32 @@
       }
     }
   },
+  "ExcursionSharedPage": {
+    "tourInfo": {
+      "title": "Tour Information",
+      "cancel": "Free Cancellation",
+      "guide": "Guide",
+      "include": "Included",
+      "duration": "Duration: "
+    },
+    "book": {
+      "title": "Book your excursion",
+      "description": "Choose a date, you can choose the number of people and complete the reservation form in the shopping cart.",
+      "cta": "Add to Cart"
+    },
+    "tourDescription": {
+      "title": "Tour Description",
+      "whatWillYouDo": "What You'll Do",
+      "inDetail": "In Detail",
+      "whatIncludes": "What's Included?",
+      "whatYouShouldBring": "What to Bring",
+      "meetingPoint": "Meeting Point",
+      "meetingPointText": "Hotel Pickup and Drop-off"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    }
+  },
   "Opinions": {
     "title": "What our clients say",
     "description": "Find out what our customers say about their experiences in our private tours in Turismochiletours.",

@@ -4211,6 +4211,32 @@
       }
     }
   },
+  "ExcursionSharedPage": {
+    "tourInfo": {
+      "title": "Información del Tour",
+      "cancel": "Cancelación Gratuita",
+      "guide": "Guía",
+      "include": "Incluido",
+      "duration": "Duración: "
+    },
+    "book": {
+      "title": "Reserva tu excursión",
+      "description": "Escoge una fecha, podras elegir la cantidad de personas y completar el formulario de reserva en el carrito de compras.",
+      "cta": "Agregar al Carrito"
+    },
+    "tourDescription": {
+      "title": "Descripción del Tour",
+      "whatWillYouDo": "Lo que Harás",
+      "inDetail": "En Detalle",
+      "whatIncludes": "¿Qué Incluye?",
+      "whatYouShouldBring": "Qué Debes Llevar",
+      "meetingPoint": "Punto de Encuentro",
+      "meetingPointText": "Recogida y regreso en el hotel"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes"
+    }
+  },
   "Opinions": {
     "title": "Opiniones de nuestros clientes",
     "description": "Descubre lo que dicen nuestros clientes sobre sus experiencias en nuestros tours privados en Turismochiletours.",

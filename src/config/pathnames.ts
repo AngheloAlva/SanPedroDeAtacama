@@ -11,11 +11,11 @@ export const pathnames = {
 		pt: "/excursoes",
 		fr: "/excursions",
 	},
-	"/excursions/[excursion-slug]": {
-		es: "/excursiones/[excursion-slug]",
-		en: "/excursions/[excursion-slug]",
-		pt: "/excursoes/[excursion-slug]",
-		fr: "/excursions/[excursion-slug]",
+	"/excursions/[excursionSlug]": {
+		es: "/excursiones/[excursionSlug]",
+		en: "/excursions/[excursionSlug]",
+		pt: "/excursoes/[excursionSlug]",
+		fr: "/excursions/[excursionSlug]",
 	},
 	"/cart": {
 		es: "/carrito",

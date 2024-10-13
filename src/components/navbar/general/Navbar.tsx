@@ -40,12 +40,12 @@ export default function Navbar(): React.ReactElement {
 	}, [lastScrollY])
 
 	return (
-		<nav className="relative h-36">
-			<div className="nav-rainbow relative z-50 flex h-12 w-full transition"></div>
+		<nav className="relative h-[7.8rem]">
+			<div className="nav-rainbow relative z-50 flex h-8 w-full transition"></div>
 
 			<div
-				className={`nav-bar z-40 flex w-full items-center justify-between gap-2 bg-white px-5 text-black transition-colors sm:px-7 xl:px-20 ${
-					navUp ? "fixed top-0 shadow-md" : "absolute top-12"
+				className={`nav-bar z-40 flex w-full items-center justify-between gap-2 bg-white px-5 text-black shadow transition-colors sm:px-7 xl:px-20 ${
+					navUp ? "fixed top-0" : "absolute top-8"
 				}`}
 			>
 				<LanguagePicker className="focus:outline-none lg:hidden" />
