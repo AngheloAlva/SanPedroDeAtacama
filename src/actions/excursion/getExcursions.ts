@@ -96,3 +96,14 @@ export const getExcursions = async (page: number = 1, pageSize: number = 10) => 
 		}
 	}
 }
+
+export const getExcursionActive = async (): Promise<(typeof excursion.$inferSelect)[]> => {
+	try {
+		const excursions = await db.select().from(excursion).where(eq(excursion.is_active, true))
+
+		return excursions
+	} catch (error) {
+		console.error(error)
+		return []
+	}
+}

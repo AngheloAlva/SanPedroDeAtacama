@@ -9,6 +9,7 @@ import TopSheetMenu from "./TopSheetMenu"
 import Menu from "./Menu"
 
 import "../../../styles/rainbowBar.css"
+import { PiShoppingCart } from "react-icons/pi"
 
 export default function Navbar(): React.ReactElement {
 	const [lastScrollY, setLastScrollY] = useState(0)
@@ -48,7 +49,9 @@ export default function Navbar(): React.ReactElement {
 					navUp ? "fixed top-0" : "absolute top-8"
 				}`}
 			>
-				<LanguagePicker className="focus:outline-none lg:hidden" />
+				<div className="w-[4.25rem]">
+					<LanguagePicker className="focus:outline-none lg:hidden" />
+				</div>
 
 				<div className="flex">
 					<Link
@@ -65,6 +68,10 @@ export default function Navbar(): React.ReactElement {
 					<Menu />
 
 					<div className="flex items-center justify-end gap-4 md:gap-5 md:py-8">
+						<Link href={"/cart"}>
+							<PiShoppingCart className="h-6 w-6 text-primary" />
+						</Link>
+
 						<LanguagePicker className="hidden focus:outline-none lg:block" />
 
 						<TopSheetMenu />

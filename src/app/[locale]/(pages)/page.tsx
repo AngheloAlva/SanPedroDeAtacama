@@ -9,7 +9,9 @@ export default async function HomePage() {
 
 	return (
 		<main className="pb-24">
-			<HeroCarousel />
+			<div className="overflow-x-hidden">
+				<HeroCarousel />
+			</div>
 
 			<section className="mx-auto mt-12 max-w-screen-2xl px-4 md:px-8">
 				<h2 className="text-2xl font-bold md:text-3xl xl:text-4xl">Excursiones</h2>
@@ -26,12 +28,12 @@ export default async function HomePage() {
 				<div className="flex w-full items-center justify-center">
 					<Link
 						href={"/excursions"}
-						className="text-orange group relative mt-10 px-2 py-1 font-medium hover:text-white md:text-lg"
+						className="group relative mt-10 px-2 py-1 font-medium text-orange hover:text-white md:text-lg"
 					>
 						Ver todas las excursiones
 						<div
 							aria-hidden
-							className="bg-orange absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm transition-all group-hover:h-full"
+							className="absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm bg-orange transition-all group-hover:h-full"
 						/>
 					</Link>
 				</div>
@@ -50,12 +52,12 @@ export default async function HomePage() {
 				<div className="flex w-full items-center justify-center">
 					<Link
 						href={"/excursions"}
-						className="text-orange group relative mt-10 px-2 py-1 font-medium hover:text-white md:text-lg"
+						className="group relative mt-10 px-2 py-1 font-medium text-orange hover:text-white md:text-lg"
 					>
 						Ver todos los programas
 						<div
 							aria-hidden
-							className="bg-orange absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm transition-all group-hover:h-full"
+							className="absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm bg-orange transition-all group-hover:h-full"
 						/>
 					</Link>
 				</div>

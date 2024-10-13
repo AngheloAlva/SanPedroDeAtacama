@@ -56,13 +56,7 @@ export default function Footer(): React.ReactElement {
 
 				<div className="mt-5 hidden w-fit flex-col items-center gap-8 lg:flex">
 					<Link href={"/"} className="flex flex-col items-center">
-						<Image
-							alt="Logo"
-							width={200}
-							height={200}
-							className="h-32 w-auto"
-							src={"/images/Logo.png"}
-						/>
+						<Image alt="Logo" width={200} height={200} className="h-32 w-auto" src={"/Logo.png"} />
 						<span className="mt-1 font-bold">By Turismochiletours</span>
 					</Link>
 					<SubscribeSheet />
