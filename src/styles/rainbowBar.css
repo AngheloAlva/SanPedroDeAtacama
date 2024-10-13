@@ -1,0 +1,53 @@
+.nav-rainbow {
+	background: linear-gradient(-80deg, #00b2bf, #e1713f, #f1c405, #60b5a5);
+	background-size: 1000vw 20vw;
+	-webkit-animation: rainbow 15s ease infinite alternate;
+	-z-animation: rainbow 15s ease infinite alternate;
+	-o-animation: rainbow 15s ease infinite alternate;
+	animation: rainbow 15s ease infinite alternate;
+}
+
+@-webkit-keyframes rainbow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@-moz-keyframes rainbow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@-o-keyframes rainbow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes rainbow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
