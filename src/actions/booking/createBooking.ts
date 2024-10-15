@@ -87,7 +87,10 @@ export const createBooking = async ({
 						booking_id: bookingId,
 						[item.modality === "excursion" ? "excursion_id" : "program_id"]: item.id,
 						price: currentPrice,
-						date: item.date.toISOString(),
+						date:
+							item.date instanceof Date
+								? item.date.toISOString()
+								: new Date(item.date).toISOString(),
 						comment: bookingItemData.comment || "",
 						people_count: bookingItemData.attendees.length,
 						accommodation: bookingItemData.accommodation || "",

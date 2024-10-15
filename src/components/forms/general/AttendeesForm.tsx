@@ -70,7 +70,8 @@ export default function AttendeesForm(): React.ReactElement {
 				email: "",
 				phone: "",
 			},
-			bookingItem: cart.map(() => ({
+			bookingItem: cart.map((item) => ({
+				id: item.id,
 				accommodation: "",
 				attendees: [
 					{
