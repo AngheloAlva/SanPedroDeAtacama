@@ -29,11 +29,11 @@ export const pathnames = {
 		pt: "/carrinho/checkout",
 		fr: "/panier/checkout",
 	},
-	"/cart/checkout/confirmation": {
-		es: "/carrito/comprar/confirmacion",
-		en: "/cart/checkout/confirmation",
-		pt: "/carrinho/checkout/confirmacao",
-		fr: "/panier/checkout/confirmation",
+	"/cart/checkout/payment": {
+		es: "/carrito/comprar/pago",
+		en: "/cart/checkout/payment",
+		pt: "/carrinho/checkout/pagamento",
+		fr: "/panier/checkout/paiement",
 	},
 
 	// Admin
