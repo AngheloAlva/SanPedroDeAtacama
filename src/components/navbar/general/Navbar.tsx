@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "@/i18n/routing"
 
+import { PiShoppingCart } from "react-icons/pi"
 import LanguagePicker from "./LanguagePicker"
 import Logo from "@/components/icons/Logo"
 import TopSheetMenu from "./TopSheetMenu"
 import Menu from "./Menu"
 
 import "../../../styles/rainbowBar.css"
-import { PiShoppingCart } from "react-icons/pi"
 
 export default function Navbar(): React.ReactElement {
 	const [lastScrollY, setLastScrollY] = useState(0)
@@ -49,7 +49,7 @@ export default function Navbar(): React.ReactElement {
 					navUp ? "fixed top-0" : "absolute top-8"
 				}`}
 			>
-				<div className="w-[4.25rem]">
+				<div className="w-[4.25rem] lg:hidden">
 					<LanguagePicker className="focus:outline-none lg:hidden" />
 				</div>
 

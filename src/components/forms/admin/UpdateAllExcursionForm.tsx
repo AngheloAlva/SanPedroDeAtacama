@@ -34,6 +34,7 @@ import {
 
 import type { ExcursionWithTranslation } from "@/types/excursions"
 import type { z } from "zod"
+import { Calendar } from "@/components/ui/calendar"
 
 export default function UpdateAllExcursionForm({
 	excursion: { excursion, excursion_translation },
@@ -43,6 +44,9 @@ export default function UpdateAllExcursionForm({
 	locale: string
 }): React.ReactElement {
 	const [imageResources, setImageResources] = useState<string[]>(excursion?.images ?? [])
+	const [datesBlocked, setDatesBlocked] = useState<Date[]>(
+		excursion?.days_not_available?.map((day) => new Date(day)) ?? []
+	)
 	const [isLoading, setIsLoading] = useState(false)
 	const { toast } = useToast()
 
@@ -148,7 +152,8 @@ export default function UpdateAllExcursionForm({
 				excursion?.id as string,
 				excursion_translation?.id as string,
 				values,
-				imageResources
+				imageResources,
+				datesBlocked
 			)
 
 			if (!res) {
@@ -600,6 +605,20 @@ export default function UpdateAllExcursionForm({
 								setImageResources={setImageResources}
 								handleDeleteImage={handleDeleteImage}
 							/>
+
+							<Card x-chunk="dashboard-07-chunk-2">
+								<CardHeader>
+									<CardTitle>Fechas bloqueadas</CardTitle>
+								</CardHeader>
+								<CardContent>
+									<Calendar
+										mode="multiple"
+										selected={datesBlocked}
+										onSelect={(days) => setDatesBlocked(days ?? [])}
+										className="rounded-md border"
+									/>
+								</CardContent>
+							</Card>
 						</div>
 					</div>
 

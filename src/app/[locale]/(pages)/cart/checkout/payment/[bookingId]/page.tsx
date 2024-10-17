@@ -57,7 +57,7 @@ export default async function PaymentPage({
 						<div className="grid gap-2">
 							{bookingItems.map((item) => (
 								<ul key={item.id}>
-									<li>{item?.name}</li>
+									{/* <li>{item?.name}</li> */}
 									<li>{item?.price}</li>
 									<li>{item?.people_count}</li>
 									<li>{new Date(item.date).toLocaleDateString(params.locale)}</li>
@@ -67,7 +67,7 @@ export default async function PaymentPage({
 					</div>
 				)}
 			</div>
-			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{booking.status !== "confirmed" && (
 					<PaymentSection bookingItems={bookingItems} bookingId={booking.id} />
 				)}

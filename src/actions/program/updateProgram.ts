@@ -72,7 +72,23 @@ export const updateProgramWithTranslation = async (
 				.set({
 					...data,
 					what_includes: data.whatIncludes.map((item) => item.item),
-					// TODO: Add rest of the fields
+					what_not_includes: data.whatNotIncludes.map((item) => item.item),
+					what_you_should_bring: data.whatYouShouldBring.map((item) => ({
+						title: item.title,
+						description: item.description,
+					})),
+					itinerary: data.itinerary.map((item) => ({
+						name: item.name,
+						title: item.title,
+						activities: item.activities.map((activity) => ({
+							excursion: {
+								slug: activity.excursion?.split(",")[0] ?? "",
+								name: activity.excursion?.split(",")[1] ?? "",
+							},
+							time: activity.time,
+							description: activity.description,
+						})),
+					})),
 				})
 				.where(
 					and(

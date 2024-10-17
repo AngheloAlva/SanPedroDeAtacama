@@ -4005,6 +4005,58 @@
       }
     }
   },
+  "ExcursionSharedPage": {
+    "tourInfo": {
+      "title": "Informações Turísticas",
+      "cancel": "Cancelamento Gratuito",
+      "guide": "Guia",
+      "include": "Incluindo",
+      "duration": "Duração:"
+    },
+    "book": {
+      "title": "Reserve sua excursão",
+      "description": "Escolha uma data, você pode escolher o número de pessoas e preencher o formulário de reserva no carrinho de compras.",
+      "cta": "adicionar ao carrinho"
+    },
+    "tourDescription": {
+      "title": "Descrição do passeio",
+      "whatWillYouDo": "O que você vai fazer",
+      "inDetail": "Em detalhes",
+      "whatIncludes": "O que está incluído?",
+      "whatYouShouldBring": "O que você deve trazer",
+      "meetingPoint": "Ponto de encontro",
+      "meetingPointText": "Recolha e entrega no hotel"
+    },
+    "faq": {
+      "title": "Perguntas frequentes"
+    }
+  },
+  "ProgramSharedPage": {
+    "tourInfo": {
+      "title": "Informações do programa",
+      "cancel": "Cancelamento Gratuito",
+      "guide": "Guia",
+      "include": "Incluindo",
+      "duration": "Duração: "
+    },
+    "book": {
+      "title": "Reserve seu programa",
+      "description": "Escolha uma data, você pode escolher o número de pessoas e preencher o formulário de reserva no carrinho de compras.",
+      "cta": "adicionar ao carrinho"
+    },
+    "tourDescription": {
+      "title": "Descrição do programa",
+      "whatIncludes": "O que está incluído?",
+      "whatNotIncludes": "O que não está incluído?",
+      "whatYouShouldBring": "O que você deve trazer",
+      "notes": {
+        "0": "Certifique-se de estar bem preparado para aproveitar ao máximo suas aventuras em San Pedro de Atacama!",
+        "1": "Não se esqueça de levar sua câmera para capturar a beleza de San Pedro de Atacama em todos os seus passeios!"
+      },
+      "meetingPoint": "Ponto de encontro",
+      "meetingPointText": "Recolha e entrega no hotel"
+    }
+  },
   "Opinions": {
     "title": "Opiniões dos nossos clientes",
     "description": "Descubra o que nossos clientes dizem sobre suas experiências em nossos tours privados na Turismochiletours.",

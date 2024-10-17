@@ -1,6 +1,7 @@
 "use server"
 
 import { and, eq } from "drizzle-orm"
+import { format } from "date-fns"
 import { db } from "@/db"
 import { z } from "zod"
 
@@ -54,7 +55,8 @@ export const updateExcursionWithTranslation = async (
 	excursionId: string,
 	excursionTranslationId: string,
 	data: z.infer<typeof updateExcursionSchema>,
-	images?: string[]
+	images?: string[],
+	datesBooked?: Date[]
 ): Promise<boolean> => {
 	try {
 		await db.transaction(async (tx) => {
@@ -65,6 +67,7 @@ export const updateExcursionWithTranslation = async (
 					price: parseFloat(data.price),
 					is_active: data.status === "active",
 					images,
+					days_not_available: datesBooked?.map((date) => format(date, "yyyy-MM-dd")),
 				})
 				.where(eq(excursion.id, excursionId))
 

@@ -4237,6 +4237,32 @@
       "title": "Preguntas Frecuentes"
     }
   },
+  "ProgramSharedPage": {
+    "tourInfo": {
+      "title": "Información del Programa",
+      "cancel": "Cancelación Gratuita",
+      "guide": "Guía",
+      "include": "Incluido",
+      "duration": "Duración: "
+    },
+    "book": {
+      "title": "Reserva tu programa",
+      "description": "Escoge una fecha, podras elegir la cantidad de personas y completar el formulario de reserva en el carrito de compras.",
+      "cta": "Agregar al Carrito"
+    },
+    "tourDescription": {
+      "title": "Descripción del Programa",
+      "whatIncludes": "¿Qué Incluye?",
+      "whatNotIncludes": "¿Qué No Incluye?",
+      "whatYouShouldBring": "Qué Debes Llevar",
+      "notes": {
+        "0": "¡Asegúrate de estar bien preparado para disfrutar al máximo de tus aventuras en San Pedro de Atacama!",
+        "1": "¡No olvides llevar tu cámara fotográfica para capturar la belleza de San Pedro de Atacama en todos tus tours!"
+      },
+      "meetingPoint": "Punto de Encuentro",
+      "meetingPointText": "Recogida y regreso en el hotel"
+    }
+  },
   "Opinions": {
     "title": "Opiniones de nuestros clientes",
     "description": "Descubre lo que dicen nuestros clientes sobre sus experiencias en nuestros tours privados en Turismochiletours.",

@@ -30,16 +30,20 @@ import {
 	FormField,
 	FormControl,
 	FormMessage,
+	FormDescription,
 } from "@/components/ui/form"
 
+import type { ExcursionWithTranslation } from "@/types/excursions"
 import type { ProgramWithTranslations } from "@/types/programs"
 import type { z } from "zod"
 
 export default function UpdateAllProgramForm({
 	program: { program, program_translation },
+	excursions,
 	locale,
 }: {
 	program: ProgramWithTranslations
+	excursions: ExcursionWithTranslation[]
 	locale: string
 }): React.ReactElement {
 	const [imageResources, setImageResources] = useState<string[]>(program?.images ?? [])
@@ -54,7 +58,14 @@ export default function UpdateAllProgramForm({
 			guide: program_translation?.guide ?? "",
 			includes: program_translation?.includes ?? "",
 			duration: program_translation?.duration ?? "",
-			itinerary: program_translation?.itinerary ?? [],
+			itinerary: program_translation?.itinerary?.map((item) => ({
+				name: item.name,
+				title: item.title,
+				activities: item.activities.map((activity) => ({
+					time: activity.time,
+					description: activity.description,
+				})),
+			})),
 			status: program?.is_active ? "active" : "inactive",
 			cancelation: program_translation?.cancelation ?? "",
 			description: program_translation?.description ?? "",
@@ -427,17 +438,19 @@ export default function UpdateAllProgramForm({
 													<Input
 														type="text"
 														className="w-full"
+														placeholder="Nombre del item"
 														{...form.register(`itinerary.${index}.name` as const)}
 														defaultValue={field.name}
 													/>
 													<Input
 														type="text"
 														className="w-full"
+														placeholder="Titulo del item"
 														{...form.register(`itinerary.${index}.title` as const)}
 														defaultValue={field.title}
 													/>
 
-													<NestedArray fieldIndex={index} />
+													<NestedArray fieldIndex={index} excursions={excursions} program={program_translation} />
 												</div>
 											)
 										})}
@@ -450,7 +463,7 @@ export default function UpdateAllProgramForm({
 													name: "",
 													title: "",
 													activities: [
-														{ description: "", excursion: { name: "", slug: "" }, time: "" },
+														{ description: "", excursion: "", time: "" },
 													],
 												})
 											}
@@ -598,8 +611,8 @@ export default function UpdateAllProgramForm({
 	)
 }
 
-function NestedArray({ fieldIndex }: { fieldIndex: number }) {
-	const { register } = useFormContext()
+function NestedArray({ fieldIndex, excursions, program }: { fieldIndex: number, excursions: ExcursionWithTranslation[], program: ProgramWithTranslations['program_translation'] }): React.ReactElement {
+	const { control } = useFormContext()
 
 	const { fields, append, remove } = useFieldArray({
 		name: `itinerary.${fieldIndex}.activities`,
@@ -616,20 +629,68 @@ function NestedArray({ fieldIndex }: { fieldIndex: number }) {
 						</Button>
 					</div>
 
-					<Input
-						type="text"
-						className="w-full"
-						{...register(`itinerary.${fieldIndex}.activities.${index}.description` as const)}
+					<FormField
+						control={control}
+						name={`itinerary.${fieldIndex}.activities.${index}.excursion`}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Excursion</FormLabel>
+								<Select onValueChange={field.onChange} defaultValue={field.value}>
+									<FormControl>
+										<SelectTrigger aria-label="Select excursion">
+											<SelectValue placeholder="Select excursion" />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										{
+											excursions.map(({ excursion, excursion_translation }) => (
+												<SelectItem key={excursion.slug} value={`${excursion.slug},${excursion_translation.title}`}>
+													{excursion_translation.title}
+												</SelectItem>
+											))
+										}
+									</SelectContent>
+								</Select>
+								<FormDescription>
+									{
+										program.itinerary && program?.itinerary?.length > 0 && (
+											`Actualmente la excursion es: ${program.itinerary?.[fieldIndex].activities[index].excursion.name}`
+										)
+									}
+								</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
 					/>
-					<Input
-						type="text"
-						className="w-full"
-						{...register(`itinerary.${fieldIndex}.activities.${index}.time` as const)}
-					/>
-					<Textarea
-						className="h-32 w-full"
-						{...register(`itinerary.${fieldIndex}.activities.${index}.description` as const)}
-					/>
+					<FormField
+						control={control}
+						name={`itinerary.${fieldIndex}.activities.${index}.time`}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Time</FormLabel>
+								<FormControl>
+									<Input type="text" className="w-full" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+						/>
+
+					<FormField
+						control={control}
+						name={`itinerary.${fieldIndex}.activities.${index}.description`}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>
+									Description
+								</FormLabel>
+								<FormControl>
+									<Textarea className="h-32 w-full" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+						/>
 				</div>
 			))}
 			<Button

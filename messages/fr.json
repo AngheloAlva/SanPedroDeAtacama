@@ -3930,6 +3930,58 @@
       }
     }
   },
+  "ExcursionSharedPage": {
+    "tourInfo": {
+      "title": "Informations sur la visite",
+      "cancel": "Annulation gratuite",
+      "guide": "Guide",
+      "include": "Y compris",
+      "duration": "Durée: "
+    },
+    "book": {
+      "title": "Réservez votre excursion",
+      "description": "Choisissez une date, vous pouvez choisir le nombre de personnes et remplir le formulaire de réservation dans le panier.",
+      "cta": "Ajouter au panier"
+    },
+    "tourDescription": {
+      "title": "Description de la visite",
+      "whatWillYouDo": "Ce que tu feras",
+      "inDetail": "En détails",
+      "whatIncludes": "Qu'est-ce qui est inclus ?",
+      "whatYouShouldBring": "Ce que vous devez apporter",
+      "meetingPoint": "Point de rencontre",
+      "meetingPointText": "Prise en charge et retour à l'hôtel"
+    },
+    "faq": {
+      "title": "Foire aux questions"
+    }
+  },
+  "ProgramSharedPage": {
+    "tourInfo": {
+      "title": "Informations sur le programme",
+      "cancel": "Annulation gratuite",
+      "guide": "Guide",
+      "include": "Y compris",
+      "duration": "Durée: "
+    },
+    "book": {
+      "title": "Réservez votre programme",
+      "description": "Choisissez une date, vous pouvez choisir le nombre de personnes et remplir le formulaire de réservation dans le panier.",
+      "cta": "Ajouter au panier"
+    },
+    "tourDescription": {
+      "title": "Description du programme",
+      "whatIncludes": "Qu'est-ce qui est inclus ?",
+      "whatNotIncludes": "Qu'est-ce qui n'est pas inclus ?",
+      "whatYouShouldBring": "Ce que vous devriez apporter",
+      "notes": {
+        "0": "Assurez-vous d'être bien préparé pour profiter pleinement de vos aventures à San Pedro de Atacama !",
+        "1": "N'oubliez pas d'apporter votre appareil photo pour capturer la beauté de San Pedro de Atacama lors de toutes vos visites!"
+      },
+      "meetingPoint": "Point de rencontre",
+      "meetingPointText": "Prise en charge et retour à l'hôtel"
+    }
+  },
   "Opinions": {
     "title": "Avis de nos clients",
     "description": "Découvrez ce que nos clients disent de leurs expériences lors de nos visites privées chez Turismochiletours.",

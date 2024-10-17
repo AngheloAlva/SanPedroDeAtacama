@@ -12,7 +12,7 @@ export const booking_item = sqliteTable("booking_item", {
 	booking_id: text("booking_id")
 		.references(() => booking.id)
 		.notNull(),
-	name: text("name").notNull(),
+	// name: text("name").notNull(),
 	excursion_id: text("excursion_id").references(() => excursion.id),
 	program_id: text("program_id").references(() => program.id),
 	price: integer("price").notNull(),

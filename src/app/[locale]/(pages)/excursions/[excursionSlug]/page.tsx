@@ -96,6 +96,7 @@ export default async function ExcursionBySlugPage({
 						id={excursion.id}
 						modality="excursion"
 						price={excursion.price}
+						textFrom="ExcursionSharedPage"
 						name={excursion_translation.title ?? ""}
 						image={excursion.images?.[0] ?? "/placeholder.png"}
 						days_not_available={excursion.days_not_available}

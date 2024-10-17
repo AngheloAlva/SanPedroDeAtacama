@@ -14,6 +14,7 @@ export const attendde = sqliteTable("attendde", {
 	last_name: text("last_name").notNull(),
 	country: text("country").notNull(),
 	age: text("age").notNull(),
+	// phone: text("phone").notNull(),
 	document_number: text("document_number").notNull(),
 	food_preference: text("food_preference"),
 })

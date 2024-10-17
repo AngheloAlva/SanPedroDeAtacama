@@ -198,7 +198,7 @@ export default function AttendeesForm(): React.ReactElement {
 							<div key={index} className="grid">
 								<h3 className="mb-2 line-clamp-1 h-9 overflow-hidden text-ellipsis text-xl md:text-2xl">
 									<span className="font-semibold">Excursion: </span>
-									{cart[index].name}
+									{cart[index]?.name}
 								</h3>
 
 								<div className="grid gap-x-2 gap-y-1.5 sm:grid-cols-2">

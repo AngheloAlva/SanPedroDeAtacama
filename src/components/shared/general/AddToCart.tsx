@@ -3,8 +3,8 @@
 import { useCartStore } from "@/store/cart.store"
 import { useToast } from "@/hooks/use-toast"
 import { useTranslations } from "next-intl"
-
 import { useState } from "react"
+
 import { Separator } from "@/components/ui/separator"
 import { Calendar } from "@/components/ui/calendar"
 import { Button } from "@/components/ui/button"
@@ -16,6 +16,7 @@ interface AddToCartProps {
 	price: number
 	modality: "excursion" | "program"
 	days_not_available: string[] | null
+	textFrom: "ExcursionSharedPage" | "ProgramSharedPage"
 	days_of_week_not_available: { dayOfWeek: number[] } | null
 }
 
@@ -25,10 +26,11 @@ export default function AddToCart({
 	image,
 	price,
 	modality,
+	textFrom,
 	days_not_available,
 	days_of_week_not_available,
 }: AddToCartProps): React.ReactElement {
-	const t = useTranslations("ExcursionSharedPage")
+	const t = useTranslations(textFrom)
 	const { addToCart, cart } = useCartStore()
 	const { toast } = useToast()
 

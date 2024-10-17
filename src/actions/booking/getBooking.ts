@@ -1,6 +1,6 @@
 "use server"
 
-import { eq } from "drizzle-orm"
+import { count, eq } from "drizzle-orm"
 import { db } from "@/db"
 
 import { booking_item } from "@/db/schema/booking-item"
@@ -19,5 +19,31 @@ export const getBookingById = async (id: string) => {
 	} catch (error) {
 		console.error(error)
 		return null
+	}
+}
+
+export const getBookings = async (page: number = 1, pageSize: number = 10) => {
+	try {
+		const totalCount = await db.select({ count: count() }).from(booking)
+		const totalPages = Math.ceil(totalCount[0].count / pageSize)
+
+		const bookings = await db
+			.select()
+			.from(booking)
+			.limit(pageSize)
+			.offset((page - 1) * pageSize)
+
+		return {
+			bookings,
+			totalPages,
+			totalCount: totalCount[0].count,
+		}
+	} catch (error) {
+		console.error(error)
+		return {
+			bookings: [],
+			totalPages: 0,
+			totalCount: 0,
+		}
 	}
 }

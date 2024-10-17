@@ -1,11 +1,22 @@
 import { getExcursionsWithTranslations } from "@/actions/excursion/getExcursions"
-import { Link } from "@/i18n/routing"
+import { getProgramsWithTranslations } from "@/actions/program/getPrograms"
 
 import ExcursionCard from "@/components/excursions/general/ExcursionCard"
+import ProgramCard from "@/components/programs/general/ProgramCard"
 import HeroCarousel from "@/components/sections/home/HeroCarousel"
+import { PiInfo } from "react-icons/pi"
 
-export default async function HomePage() {
-	const { excursions } = await getExcursionsWithTranslations()
+import type { Locale } from "@/types/locales"
+import InfoCard from "@/components/shared/general/InfoCard"
+
+export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
+	const [excursionsRes, programsRes] = await Promise.all([
+		getExcursionsWithTranslations(locale as Locale),
+		getProgramsWithTranslations(locale as Locale),
+	])
+
+	const { excursions } = excursionsRes
+	const { programs } = programsRes
 
 	return (
 		<main className="pb-24">
@@ -20,22 +31,15 @@ export default async function HomePage() {
 				</p>
 
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+					{excursions.length === 0 && (
+						<InfoCard
+							icon={<PiInfo className="-mt-0.5 mr-2 inline-block h-6 w-6 text-red-900" />}
+							message="No hay excursiones disponibles"
+						/>
+					)}
 					{excursions.map((excursion) => (
 						<ExcursionCard excursion={excursion} key={excursion.excursion.slug} />
 					))}
-				</div>
-
-				<div className="flex w-full items-center justify-center">
-					<Link
-						href={"/excursions"}
-						className="group relative mt-10 px-2 py-1 font-medium text-orange hover:text-white md:text-lg"
-					>
-						Ver todas las excursiones
-						<div
-							aria-hidden
-							className="absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm bg-orange transition-all group-hover:h-full"
-						/>
-					</Link>
 				</div>
 			</section>
 
@@ -46,20 +50,15 @@ export default async function HomePage() {
 				</p>
 
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-					{/* // TODO: Add programs */}
-				</div>
-
-				<div className="flex w-full items-center justify-center">
-					<Link
-						href={"/excursions"}
-						className="group relative mt-10 px-2 py-1 font-medium text-orange hover:text-white md:text-lg"
-					>
-						Ver todos los programas
-						<div
-							aria-hidden
-							className="absolute bottom-0 left-1/2 -z-10 h-0.5 w-full -translate-x-1/2 transform rounded-sm bg-orange transition-all group-hover:h-full"
+					{programs.length === 0 && (
+						<InfoCard
+							icon={<PiInfo className="-mt-0.5 mr-2 inline-block h-6 w-6 text-red-900" />}
+							message="No hay programas disponibles"
 						/>
-					</Link>
+					)}
+					{programs.map((program) => (
+						<ProgramCard program={program} key={program.program.slug} />
+					))}
 				</div>
 			</section>
 		</main>

@@ -1,6 +1,6 @@
 "use server"
 
-import { and, count, eq } from "drizzle-orm"
+import { and, count, eq, ne } from "drizzle-orm"
 import { db } from "@/db"
 
 import { program_translation } from "@/db/schema/program-translation"
@@ -25,7 +25,13 @@ export const getProgramsWithTranslations = async (
 			})
 			.from(program_translation)
 			.innerJoin(program, eq(program.id, program_translation.program_id))
-			.where(eq(program_translation.locale, locale))
+			.where(
+				and(
+					eq(program_translation.locale, locale),
+					ne(program_translation.description, ""),
+					eq(program.is_active, true)
+				)
+			)
 			.limit(pageSize)
 			.offset((page - 1) * pageSize)
 

@@ -21,11 +21,8 @@ export const updateProgramSchema = z.object({
 			activities: z.array(
 				z.object({
 					time: z.string(),
-					excursion: z.object({
-						name: z.string(),
-						slug: z.string(),
-					}),
 					description: z.string(),
+					excursion: z.string().optional(),
 				})
 			),
 		})
