@@ -6,6 +6,7 @@ export const updateExcursionSchema = z.object({
 	// images: z.string(),
 	price: z.string().min(0),
 	status: z.string(),
+	days_of_week_not_available: z.array(z.number().refine((value) => value >= 0 && value <= 6)),
 
 	// Excurion Translation
 	name: z.string().min(5),

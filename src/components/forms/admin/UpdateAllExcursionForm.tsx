@@ -11,6 +11,8 @@ import { useState } from "react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import ImagesCard from "@/components/shared/admin/ImagesCard"
+import { Calendar } from "@/components/ui/calendar"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -30,11 +32,21 @@ import {
 	FormField,
 	FormControl,
 	FormMessage,
+	FormDescription,
 } from "@/components/ui/form"
 
 import type { ExcursionWithTranslation } from "@/types/excursions"
 import type { z } from "zod"
-import { Calendar } from "@/components/ui/calendar"
+
+const dayOfWeek = [
+	{ id: 0, label: "Domingo" },
+	{ id: 1, label: "Lunes" },
+	{ id: 2, label: "Martes" },
+	{ id: 3, label: "Miercoles" },
+	{ id: 4, label: "Jueves" },
+	{ id: 5, label: "Viernes" },
+	{ id: 6, label: "Sabado" },
+] as const
 
 export default function UpdateAllExcursionForm({
 	excursion: { excursion, excursion_translation },
@@ -64,6 +76,7 @@ export default function UpdateAllExcursionForm({
 			description: excursion_translation?.description ?? "",
 			faq: excursion_translation?.faq ?? [{ question: "", answer: "" }],
 			inDetail: excursion_translation?.in_detail ?? [{ title: "", description: "" }],
+			days_of_week_not_available: excursion?.days_of_week_not_available?.dayOfWeek ?? [],
 			whatIncludes: (excursion_translation?.what_includes ?? []).map((item) => ({ item })),
 			whatWillYouDo: excursion_translation?.what_will_you_do ?? [{ title: "", description: "" }],
 			whatYouShouldBring: (excursion_translation?.what_you_should_bring ?? []).map((item) => ({
@@ -616,6 +629,53 @@ export default function UpdateAllExcursionForm({
 										selected={datesBlocked}
 										onSelect={(days) => setDatesBlocked(days ?? [])}
 										className="rounded-md border"
+									/>
+
+									<FormField
+										control={form.control}
+										name="days_of_week_not_available"
+										render={() => (
+											<FormItem>
+												<div className="mb-4">
+													<FormLabel className="text-base">Dia de la semana</FormLabel>
+													<FormDescription>
+														Selecciona los dias de la semana que no estara disponible la excursion
+													</FormDescription>
+												</div>
+												{dayOfWeek.map((item) => (
+													<FormField
+														key={item.id}
+														control={form.control}
+														name="days_of_week_not_available"
+														render={({ field }) => {
+															return (
+																<FormItem
+																	key={item.id}
+																	className="flex flex-row items-start space-x-3 space-y-0"
+																>
+																	<FormControl>
+																		<Checkbox
+																			checked={field.value?.includes(item.id)}
+																			onCheckedChange={(checked) => {
+																				return checked
+																					? field.onChange([...field.value, item.id])
+																					: field.onChange(
+																							field.value?.filter((value) => value !== item.id)
+																						)
+																			}}
+																		/>
+																	</FormControl>
+																	<FormLabel className="text-sm font-normal">
+																		{item.label}
+																	</FormLabel>
+																</FormItem>
+															)
+														}}
+													/>
+												))}
+												<FormMessage />
+											</FormItem>
+										)}
 									/>
 								</CardContent>
 							</Card>

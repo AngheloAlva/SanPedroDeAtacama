@@ -2,8 +2,7 @@ import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 
 import { Sheet, SheetTitle, SheetContent, SheetTrigger, SheetDescription } from "../ui/sheet"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
+import SubscribeInput from "./SubscribeInput"
 
 export default function SubscribeSheet({ className }: { className?: string }): React.ReactElement {
 	const t = useTranslations("Footer.subscribe.sheet")
@@ -30,16 +29,7 @@ export default function SubscribeSheet({ className }: { className?: string }): R
 						{t("description")}
 					</SheetDescription>
 
-					<div className="mx-auto mt-8 flex max-w-2xl items-center justify-center">
-						<Input
-							className="h-fit rounded-r-none border-r-0 border-input py-3 text-base font-medium text-black focus:outline-none focus:ring-0 focus-visible:ring-0"
-							placeholder={t("input-placeholder")}
-							type="email"
-						/>
-						<Button className="h-fit rounded-l-none border border-l-0 border-input bg-[#e1713f] py-3 text-base font-medium hover:bg-[#e1713f] hover:brightness-90">
-							{t("button")}
-						</Button>
-					</div>
+					<SubscribeInput />
 				</div>
 			</SheetContent>
 		</Sheet>

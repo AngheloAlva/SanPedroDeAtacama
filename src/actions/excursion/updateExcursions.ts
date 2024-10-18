@@ -68,6 +68,9 @@ export const updateExcursionWithTranslation = async (
 					is_active: data.status === "active",
 					images,
 					days_not_available: datesBooked?.map((date) => format(date, "yyyy-MM-dd")),
+					days_of_week_not_available: data.days_of_week_not_available
+						? { dayOfWeek: data.days_of_week_not_available }
+						: null,
 				})
 				.where(eq(excursion.id, excursionId))
 

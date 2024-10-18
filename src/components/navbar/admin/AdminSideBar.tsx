@@ -1,10 +1,18 @@
 import { Link } from "@/i18n/routing"
 import Image from "next/image"
 
-import { PiMapPinSimpleArea, PiPackage, PiMountains, PiShoppingCart, PiHouse, PiList } from "react-icons/pi"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import SideBarItem from "./SideBarItem"
+import {
+	PiList,
+	PiHouse,
+	PiPackage,
+	PiMountains,
+	PiUsersThree,
+	PiShoppingCart,
+	PiMapPinSimpleArea,
+} from "react-icons/pi"
 
 export default function AdminSideBar(): React.ReactElement {
 	return (
@@ -60,6 +68,13 @@ export default function AdminSideBar(): React.ReactElement {
 						title="Zones"
 						icon={<PiMapPinSimpleArea className="h-5 w-5" />}
 						actualPath="/admin/dashboard"
+					/>
+
+					<SideBarItem
+						title="Subscribers"
+						actualPath="/admin/dashboard"
+						href="/admin/dashboard/subscribers"
+						icon={<PiUsersThree className="h-5 w-5" />}
 					/>
 				</nav>
 			</SheetContent>

@@ -121,4 +121,10 @@ export const pathnames = {
 		pt: "/admin/dashboard/pedidos/[orderId]",
 		fr: "/admin/dashboard/orders/[orderId]",
 	},
+	"/admin/dashboard/subscribers": {
+		es: "/admin/panel/suscriptores",
+		en: "/admin/dashboard/subscribers",
+		pt: "/admin/dashboard/assinantes",
+		fr: "/admin/dashboard/subscribers",
+	},
 }

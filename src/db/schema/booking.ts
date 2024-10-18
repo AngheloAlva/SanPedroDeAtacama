@@ -9,7 +9,6 @@ export const booking = sqliteTable("booking", {
 		.primaryKey(),
 	total_price: integer("total_price"),
 	email: text("email").notNull(),
-	phone: text("phone").notNull(),
 	status: text("status", { enum: ["pending", "confirmed", "cancelled"] })
 		.default("pending")
 		.notNull(),

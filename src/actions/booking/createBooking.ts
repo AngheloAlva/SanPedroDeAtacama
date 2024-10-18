@@ -19,12 +19,9 @@ interface CreateBookingProps {
 	bookingData: z.infer<typeof checkoutSchema>
 }
 
-export const createBooking = async ({
-	cart,
-	bookingData: { bookingInfo, bookingItem },
-}: CreateBookingProps) => {
+export const createBooking = async ({ cart, bookingData }: CreateBookingProps) => {
 	try {
-		const validatedData = checkoutSchema.parse({ bookingInfo, bookingItem })
+		const validatedData = checkoutSchema.parse(bookingData)
 
 		if (cart.length === 0) {
 			throw new Error("Cart is empty")
@@ -41,8 +38,7 @@ export const createBooking = async ({
 				.values({
 					total_price: 0,
 					status: "pending",
-					email: validatedData.bookingInfo.email,
-					phone: validatedData.bookingInfo.phone,
+					email: validatedData.attendees[0].email || "",
 				})
 				.returning()
 
@@ -51,6 +47,18 @@ export const createBooking = async ({
 
 			for (const item of cart) {
 				let currentPrice: number
+				if (item.date === undefined) {
+					throw new Error("Date is required")
+				}
+
+				if (item.price === undefined) {
+					throw new Error("Price is required")
+				}
+
+				if (new Date(item.date) < new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000)) {
+					throw new Error("Date is invalid")
+				}
+
 				if (item.modality === "excursion") {
 					const [excursionData] = await trx
 						.select({ price: excursion.price })
@@ -75,12 +83,6 @@ export const createBooking = async ({
 					throw new Error(`Price mismatch for item: ${item.id}`)
 				}
 
-				const bookingItemData = validatedData.bookingItem.find((bi) => bi.id === item.id)
-
-				if (!bookingItemData) {
-					throw new Error(`Booking item data not found for: ${item.name}`)
-				}
-
 				const [newBookingItem] = await trx
 					.insert(booking_item)
 					.values({
@@ -91,25 +93,24 @@ export const createBooking = async ({
 							item.date instanceof Date
 								? item.date.toISOString()
 								: new Date(item.date).toISOString(),
-						comment: bookingItemData.comment || "",
-						people_count: bookingItemData.attendees.length,
-						accommodation: bookingItemData.accommodation || "",
+						comment: validatedData.comment || "",
+						people_count: validatedData.attendees.length,
+						accommodation: validatedData.accommodation,
 					})
 					.returning()
 
-				for (const attendeeData of bookingItemData.attendees) {
+				for (const attendeeData of validatedData.attendees) {
 					await trx.insert(attendde).values({
-						name: attendeeData.name,
 						country: attendeeData.country,
 						age: attendeeData.age.toString(),
-						last_name: attendeeData.lastName,
+						full_name: attendeeData.fullName,
 						booking_item_id: newBookingItem.id,
 						document_number: attendeeData.documentNumber,
-						food_preference: attendeeData.foodPreference || "",
+						food_preference: attendeeData.foodPreference,
 					})
 				}
 
-				totalPrice += currentPrice * bookingItemData.attendees.length
+				totalPrice += currentPrice * validatedData.attendees.length
 			}
 
 			await trx.update(booking).set({ total_price: totalPrice }).where(eq(booking.id, bookingId))

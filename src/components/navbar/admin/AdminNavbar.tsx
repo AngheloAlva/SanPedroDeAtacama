@@ -1,8 +1,15 @@
 import { Link } from "@/i18n/routing"
 import Image from "next/image"
 
-import { PiMapPinSimpleArea, PiPackage, PiMountains, PiShoppingCart, PiHouse } from "react-icons/pi"
 import TooltipItem from "./TooltipItem"
+import {
+	PiHouse,
+	PiPackage,
+	PiMountains,
+	PiUsersThree,
+	PiShoppingCart,
+	PiMapPinSimpleArea,
+} from "react-icons/pi"
 
 export default function AdminNavbar(): React.ReactElement {
 	return (
@@ -54,6 +61,13 @@ export default function AdminNavbar(): React.ReactElement {
 					href="/admin/dashboard/zones"
 					actualPath="/admin/dashboard"
 					icon={<PiMapPinSimpleArea className="h-5 w-5" />}
+				/>
+
+				<TooltipItem
+					label="Subscribers"
+					href="/admin/dashboard/subscribers"
+					actualPath="/admin/dashboard"
+					icon={<PiUsersThree className="h-5 w-5" />}
 				/>
 			</nav>
 		</aside>

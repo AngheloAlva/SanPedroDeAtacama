@@ -35,9 +35,7 @@ export default function AddToCart({
 	const { toast } = useToast()
 
 	const [message, setMessage] = useState<string>("")
-	const [date, setDate] = useState<Date | undefined>(
-		new Date(new Date().setDate(new Date().getDate() + 3))
-	)
+	const [date, setDate] = useState<Date | undefined>()
 
 	const handleAddToCart = () => {
 		if (!date) {
@@ -90,9 +88,9 @@ export default function AddToCart({
 						disabled={[
 							{ before: new Date(new Date().setDate(new Date().getDate() + 3)) },
 							{
-								dayOfWeek: days_of_week_not_available ? days_of_week_not_available?.dayOfWeek : [],
+								dayOfWeek: days_of_week_not_available ? days_of_week_not_available.dayOfWeek : [],
 							},
-							days_not_available ? days_not_available.map((day) => new Date(day)) : [],
+							...(days_not_available ? days_not_available.map((day) => new Date(day)) : []),
 						]}
 						classNames={{
 							table: "w-full mt-4",
