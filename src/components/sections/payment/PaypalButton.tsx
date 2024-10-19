@@ -86,10 +86,10 @@ export default function PaypalButton({
 				<Skeleton className="h-12 w-full" />
 			) : (
 				<PayPalButtons
-					createOrder={createOrder}
-					onApprove={onApprove}
 					onCancel={onCancell}
-					style={{ layout: "horizontal", color: "blue", tagline: false }}
+					onApprove={onApprove}
+					createOrder={createOrder}
+					style={{ layout: "horizontal", color: "blue", tagline: false, height: 40 }}
 				/>
 			)}
 		</>

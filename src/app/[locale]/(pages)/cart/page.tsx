@@ -1,12 +1,18 @@
 import SumarySection from "@/components/cart/SumarySection"
 import CartSection from "@/components/cart/CartSection"
+import StepsCard from "@/components/cart/StepsCard"
+import { Separator } from "@/components/ui/separator"
 
 export default async function CartPage(): Promise<React.ReactElement> {
 	return (
-		<main className="mx-auto flex min-h-[60vh] max-w-screen-xl flex-col gap-7 px-4 py-4 sm:px-8 md:my-12 md:flex-row xl:my-20">
-			<CartSection />
+		<StepsCard step={1}>
+			<div className="flex min-h-full flex-col items-start justify-center gap-6 sm:mt-4 sm:gap-y-10 md:mt-6 md:flex-row">
+				<CartSection className="w-full md:w-2/3" />
 
-			<SumarySection />
-		</main>
+				<Separator className="md:hidden" />
+
+				<SumarySection className="w-full md:w-1/3" />
+			</div>
+		</StepsCard>
 	)
 }

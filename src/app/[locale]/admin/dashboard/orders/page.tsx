@@ -1,10 +1,10 @@
 "use client"
 
-import { Link, usePathname } from "@/i18n/routing"
 import { useBookings } from "@/hooks/useBookings"
+import { usePathname } from "@/i18n/routing"
 
-import { ChevronLeft, ChevronRight, PlusCircle } from "lucide-react"
 import BookingTable from "@/components/booking/admin/BookingsTable"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
 	Card,
@@ -43,18 +43,12 @@ export default function AdminOrdersPage(): React.ReactElement {
 						<File className="h-3.5 w-3.5" />
 						<span className="whitespace-nowrap">Export</span>
 					</Button> */}
-					<Link href={"/admin/dashboard/zones/create"}>
-						<Button className="h-9 gap-1">
-							<PlusCircle className="h-4 w-4" />
-							<span className="whitespace-nowrap">Add Zone</span>
-						</Button>
-					</Link>
 				</div>
 
 				<Card>
 					<CardHeader>
-						<CardTitle>Zone</CardTitle>
-						<CardDescription>Manage your zones.</CardDescription>
+						<CardTitle>Reservas</CardTitle>
+						<CardDescription>Revise las reservas de los clientes</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<BookingTable isLoading={isLoading} bookings={bookings} />

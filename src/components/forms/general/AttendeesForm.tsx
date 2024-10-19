@@ -10,12 +10,12 @@ import { useRouter } from "@/i18n/routing"
 import { useState } from "react"
 import { z } from "zod"
 
+import { PiDotBold, PiTrashBold } from "react-icons/pi"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { PiTrashBold } from "react-icons/pi"
 import {
 	Form,
 	FormItem,
@@ -94,21 +94,23 @@ export default function AttendeesForm(): React.ReactElement {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full sm:mt-4 md:mt-6">
 				<section>
-					<h2 className="mb-2 flex items-center gap-1 text-2xl font-bold md:text-3xl">
-						<div aria-hidden className="h-0.5 w-4 bg-black" />
-						Datos de los asistentes
-					</h2>
+					<h2 className="mb-2 text-2xl font-bold md:text-3xl">Datos de los asistentes</h2>
 
 					<div>
 						<div className="grid">
-							<h3 className="mb-2 line-clamp-1 h-9 overflow-hidden text-ellipsis text-xl md:text-2xl">
-								Excursiones:
+							<h3 className="mb-1 text-xl font-semibold md:text-2xl">Itinerario:</h3>
+							<ul className="">
 								{cart.map((item) => (
-									<span key={item.id}>{item.name}</span>
+									<li key={item.id} className="flex items-center">
+										<PiDotBold className="h-5 w-5" />
+										{item.name}
+									</li>
 								))}
-							</h3>
+							</ul>
+
+							<Separator className="my-8" />
 
 							<div className="grid gap-x-2 gap-y-1.5 sm:grid-cols-2">
 								<FormField
@@ -329,7 +331,7 @@ export default function AttendeesForm(): React.ReactElement {
 				<Button
 					size={"lg"}
 					type="submit"
-					className="w-full bg-orange text-base font-bold hover:bg-orange"
+					className="w-full bg-green text-base font-bold hover:bg-green hover:brightness-90"
 				>
 					{isSubmitting ? "Enviando..." : "Continuar con el pago"}
 				</Button>

@@ -2,7 +2,8 @@ import { getBookingById } from "@/actions/booking/getBooking"
 import { notFound } from "next/navigation"
 import { cn } from "@/lib/utils"
 
-import PaymentSection from "@/components/sections/payment/PaymentSection"
+import PaymentSelector from "@/components/sections/payment/PaymentSelector"
+import StepsCard from "@/components/cart/StepsCard"
 import { Badge } from "@/components/ui/badge"
 
 export default async function PaymentPage({
@@ -19,16 +20,13 @@ export default async function PaymentPage({
 	const { booking, bookingItems } = data
 
 	return (
-		<main className="mx-auto min-h-[60vh] max-w-screen-xl gap-7 px-4 py-12 sm:px-8 md:my-12 xl:my-20">
-			<h1 className="mb-4 text-2xl font-bold">Payment</h1>
-
-			<div className="flex flex-col gap-4 rounded bg-white p-4 shadow-md">
-				<div className="flex flex-wrap justify-between gap-x-2">
-					<h2 className="text-xl font-semibold">Summary</h2>
-
+		<StepsCard step={3}>
+			<div className="flex w-full flex-col gap-4 sm:mt-4 md:mt-6">
+				<div className="flex flex-wrap items-center justify-between gap-x-2">
+					<h1 className="text-2xl font-bold">Pago de reserva</h1>
 					<Badge
 						className={cn(
-							"mb-4",
+							"h-fit",
 							booking.status === "pending" && "bg-yellow",
 							booking.status === "confirmed" && "bg-green",
 							booking.status === "cancelled" && "bg-red-400"
@@ -42,36 +40,8 @@ export default async function PaymentPage({
 					</Badge>
 				</div>
 
-				<p className="flex flex-col">
-					<strong className="font-semibold">ID de reserva: </strong> {booking.id}
-				</p>
-				<p className="flex flex-col">
-					<strong className="font-semibold">Precio total: </strong>
-					{new Intl.NumberFormat(params.locale, { style: "currency", currency: "CLP" }).format(
-						Number(booking.total_price)
-					)}
-				</p>
-				{bookingItems.length > 0 && (
-					<div className="flex flex-col">
-						<strong className="font-semibold">Items: </strong>
-						<div className="grid gap-2">
-							{bookingItems.map((item) => (
-								<ul key={item.id}>
-									{/* <li>{item?.name}</li> */}
-									<li>{item?.price}</li>
-									<li>{item?.people_count}</li>
-									<li>{new Date(item.date).toLocaleDateString(params.locale)}</li>
-								</ul>
-							))}
-						</div>
-					</div>
-				)}
+				<PaymentSelector booking={booking} bookingItems={bookingItems} />
 			</div>
-			<div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-				{booking.status !== "confirmed" && (
-					<PaymentSection bookingItems={bookingItems} bookingId={booking.id} />
-				)}
-			</div>
-		</main>
+		</StepsCard>
 	)
 }

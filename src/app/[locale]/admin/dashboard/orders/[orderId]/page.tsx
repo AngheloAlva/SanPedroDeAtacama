@@ -5,9 +5,9 @@ export default async function AdminOrdersByIdPage({
 }: {
 	params: { locale: string; orderId: string }
 }): Promise<React.ReactElement> {
-	const dbZone = await getBookingById(orderId)
+	const dbBooking = await getBookingById(orderId)
 
-	if (!dbZone) {
+	if (!dbBooking) {
 		return (
 			<main className="grid flex-1 items-start gap-4 p-4 text-xl font-bold sm:px-6 md:gap-6">
 				Booking not found
@@ -17,9 +17,9 @@ export default async function AdminOrdersByIdPage({
 
 	return (
 		<main className="grid flex-1 items-start gap-4 p-4 sm:px-6 md:gap-6">
-			{dbZone.bookingItems.map((item) => (
+			{dbBooking.bookingItems.map((item) => (
 				<div key={item.id}>
-					<p>{item.name}</p>
+					<p>{item.excursion_name}</p>
 					<p>{item.price}</p>
 				</div>
 			))}

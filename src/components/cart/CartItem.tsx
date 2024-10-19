@@ -18,21 +18,23 @@ export default function CartItem({
 	removeFromCart,
 }: CartItemProps): React.ReactElement {
 	return (
-		<div className="flex overflow-hidden rounded-lg border shadow-sm">
+		<div className="flex overflow-hidden rounded-sm border shadow-sm">
 			<Image
 				alt={name}
 				src={image}
-				width={120}
-				height={120}
-				className="aspect-square object-cover"
+				width={200}
+				height={200}
+				className="aspect-square h-32 w-1/4 object-cover sm:block sm:h-32 sm:w-32"
 			/>
 
-			<div className="flex w-full flex-col p-2 md:text-lg">
-				<span className="font-semibold">{name}</span>
-				<span className="text-sm text-muted-foreground">{new Date(date).toLocaleDateString()}</span>
+			<div className="flex w-full flex-col justify-between p-2 md:text-lg">
+				<div className="">
+					<p className="font-semibold">{name}</p>
+					<p className="text-sm text-muted-foreground">{new Date(date).toLocaleDateString()}</p>
+				</div>
 
 				<div className="flex items-end justify-between">
-					<span className="font-semibold">${price}</span>
+					<span className="font-semibold">${price.toLocaleString("cl-CL")}</span>
 
 					{removeFromCart !== undefined && (
 						<Button

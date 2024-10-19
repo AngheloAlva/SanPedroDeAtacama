@@ -11,11 +11,8 @@ export default function CartSection({ className }: { className?: string }): Reac
 	const { cart, removeFromCart } = useCartStore()
 
 	return (
-		<section className={cn("flex flex-col gap-2.5 md:w-2/3", className)}>
-			<h2 className="flex items-center gap-1 text-2xl font-bold md:text-3xl">
-				<div aria-hidden className="h-0.5 w-4 bg-black" />
-				Cart
-			</h2>
+		<section className={cn("flex flex-col gap-2.5", className)}>
+			<h2 className="text-2xl font-bold md:text-3xl">Itinerario</h2>
 
 			{cart.length === 0 && (
 				<>
