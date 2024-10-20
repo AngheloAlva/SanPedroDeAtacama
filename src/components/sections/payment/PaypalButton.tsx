@@ -81,7 +81,7 @@ export default function PaypalButton({
 	}
 
 	return (
-		<>
+		<div>
 			{isPending ? (
 				<Skeleton className="h-12 w-full" />
 			) : (
@@ -92,6 +92,6 @@ export default function PaypalButton({
 					style={{ layout: "horizontal", color: "blue", tagline: false, height: 40 }}
 				/>
 			)}
-		</>
+		</div>
 	)
 }
