@@ -6,7 +6,6 @@ interface FlowConfig {
 	apiKey: string
 	secretKey: string
 	apiURL: string
-	baseURL: string
 }
 
 export class FlowApi {
@@ -16,8 +15,8 @@ export class FlowApi {
 		this.config = config
 	}
 
-	private async sign(params: Record<string, any>): Promise<string> {
-		const sorted = Object.keys(params)
+	private sign(params: Record<string, any>): string {
+		const sortedParams = Object.keys(params)
 			.sort()
 			.reduce(
 				(acc, key) => {
@@ -27,13 +26,17 @@ export class FlowApi {
 				{} as Record<string, any>
 			)
 
-		const concatenated = Object.entries(sorted)
+		const toSign = Object.entries(sortedParams)
 			.map(([key, value]) => `${key}${value}`)
 			.join("")
 
-		const hmac = crypto.createHmac("sha256", this.config.secretKey)
-		hmac.update(concatenated)
-		return hmac.digest("hex")
+		return crypto.createHmac("sha256", this.config.secretKey).update(toSign).digest("hex")
+	}
+
+	private buildQueryString(params: Record<string, any>): string {
+		return Object.entries(params)
+			.map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+			.join("&")
 	}
 
 	async send(
@@ -42,34 +45,35 @@ export class FlowApi {
 		method: "GET" | "POST"
 	): Promise<any> {
 		params.apiKey = this.config.apiKey
-		const sign = await this.sign(params)
+		const signature = this.sign(params)
+		params.s = signature
 
-		const url = new URL(`${this.config.apiURL}/${serviceName}`)
+		const url = `${this.config.apiURL}/${serviceName}`
+		const queryString = this.buildQueryString(params)
 
-		if (method === "GET") {
-			Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]))
+		try {
+			let response
+			if (method === "GET") {
+				response = await fetch(`${url}?${queryString}`)
+			} else {
+				response = await fetch(url, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: queryString,
+				})
+			}
+
+			if (!response.ok) {
+				const errorData = await response.json()
+				throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message}`)
+			}
+
+			return await response.json()
+		} catch (error) {
+			console.error("Error in FlowApi:", error)
+			throw error
 		}
-
-		const options: RequestInit = {
-			method,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		}
-
-		if (method === "POST") {
-			options.body = JSON.stringify(params)
-		}
-
-		options.headers = {
-			...options.headers,
-			"X-FLOW-SIGN": sign,
-		}
-
-		const response = await fetch(url.toString(), options)
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`)
-		}
-		return response.json()
 	}
 }

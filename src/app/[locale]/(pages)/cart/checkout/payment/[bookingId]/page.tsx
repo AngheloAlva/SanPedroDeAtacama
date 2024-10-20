@@ -40,7 +40,9 @@ export default async function PaymentPage({
 					</Badge>
 				</div>
 
-				<PaymentSelector booking={booking} bookingItems={bookingItems} />
+				{booking.status !== "confirmed" && (
+					<PaymentSelector booking={booking} bookingItems={bookingItems} />
+				)}
 			</div>
 		</StepsCard>
 	)

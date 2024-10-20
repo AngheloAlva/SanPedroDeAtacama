@@ -12,14 +12,14 @@ import {
 
 import { Skeleton } from "@/components/ui/skeleton"
 
-import type { booking_item } from "@/db/schema/booking-item"
-
 export default function PaypalButton({
-	bookingItems,
+	amount,
 	bookingId,
+	currency,
 }: {
-	bookingItems: (typeof booking_item.$inferSelect)[]
+	amount: number
 	bookingId: string
+	currency: "USD" | "BRL"
 }): React.ReactElement {
 	const [{ isPending }] = usePayPalScriptReducer()
 	const { toast } = useToast()
@@ -30,8 +30,8 @@ export default function PaypalButton({
 				{
 					invoice_id: bookingId,
 					amount: {
-						currency_code: "USD",
-						value: bookingItems.reduce((acc, item) => acc + item.price, 0).toString(),
+						currency_code: currency,
+						value: `${amount}`,
 					},
 				},
 			],

@@ -1,31 +1,42 @@
 "use server"
 
-import { eq } from "drizzle-orm"
-import { db } from "@/db"
+import { FlowApi } from "@/lib/flowApi"
 
-import { booking } from "@/db/schema/booking"
+const config = {
+	apiKey: process.env.FLOW_API_KEY!,
+	secretKey: process.env.FLOW_SECRET_KEY!,
+	apiURL: process.env.FLOW_API_URL!,
+}
 
-import type { FlowParams } from "@/types/flow"
-
-export const createFlowOrder = async (bookingId: string) => {
+export const createFlowOrder = async (bookingId: string, amount: number, userEmail: string) => {
 	try {
-		const [dbBooking] = await db.select().from(booking).where(eq(booking.id, bookingId))
-
-		if (!dbBooking) {
-			throw new Error("Booking not found")
+		const flowApi = new FlowApi(config)
+		const params = {
+			commerceOrder: bookingId,
+			subject: "Pago de reserva",
+			currency: "CLP",
+			amount: amount,
+			email: userEmail,
+			urlConfirmation: `${process.env.NEXT_PUBLIC_BASE_URL}/api/flow/payment-confirm`,
+			urlReturn: `${process.env.NEXT_PUBLIC_BASE_URL}/api/flow/result`,
+			optional: JSON.stringify({ bookingId }),
 		}
 
-		const params: FlowParams = {
-			commerceOrder: dbBooking.id,
-			subject: "Prueba de pago con Flow",
-			currency: "CLP",
-			amount: dbBooking.total_price,
-			email: dbBooking.email,
-			paymentMethod: 9,
-			urlConfirmation: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment/flow/confirm`,
-			urlReturn: `${process.env.NEXT_PUBLIC_BASE_URL}/cart/checkout/payment/${dbBooking.id}`,
+		const response = await flowApi.send("payment/create", params, "POST")
+
+		if (response.url && response.token) {
+			return {
+				ok: true,
+				redirect: `${response.url}?token=${response.token}`,
+			}
+		} else {
+			throw new Error("Invalid response from Flow API")
 		}
 	} catch (error) {
-		console.log(error)
+		console.error("Error creating Flow order:", error)
+		return {
+			ok: false,
+			message: "Error creating Flow order",
+		}
 	}
 }
