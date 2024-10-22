@@ -39,13 +39,6 @@ export default function TopSheetMenu(): React.ReactElement {
 					>
 						<SheetClose className="group-hover:underline">{navbarT("services")}</SheetClose>
 					</Link>
-
-					<Link
-						className="group w-full text-nowrap py-2.5 text-xl font-bold hover:underline"
-						href={"/booking"}
-					>
-						<SheetClose className="group-hover:underline">{navbarT("book")}</SheetClose>
-					</Link>
 				</div>
 
 				<Accordion type="single" collapsible className="w-full">

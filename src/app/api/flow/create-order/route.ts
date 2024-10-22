@@ -8,7 +8,7 @@ const config = {
 	baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
 }
 
-export async function POST(request: Request) {
+export async function POST() {
 	try {
 		const optional = {
 			rut: "9999999-9",

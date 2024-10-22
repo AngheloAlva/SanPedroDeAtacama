@@ -8,17 +8,15 @@ import { cn } from "@/lib/utils"
 interface Props {
 	id: string
 	email: string
-	phone: string
-	total_price: number | null
+	total_price_clp: number | null
 	status: "pending" | "confirmed" | "cancelled"
 }
 
 export default function BookingTableItem({
 	email,
 	id,
-	phone,
 	status,
-	total_price,
+	total_price_clp,
 }: Props): React.ReactElement {
 	return (
 		<TableRow>
@@ -34,9 +32,8 @@ export default function BookingTableItem({
 					{status === "pending" ? "Pending" : status === "confirmed" ? "Confirmed" : "Cancelled"}
 				</Badge>
 			</TableCell>
-			<TableCell>${total_price}</TableCell>
+			<TableCell>${total_price_clp}</TableCell>
 			<TableCell className="hidden md:table-cell">{email}</TableCell>
-			<TableCell className="hidden md:table-cell">{phone}</TableCell>
 			<TableCell>
 				<Link className="w-full" href={`/admin/dashboard/orders/${id}`}>
 					<Button size={"sm"} variant="outline">

@@ -16,7 +16,7 @@ interface Props {
 	}
 }
 
-export default function FullSumary({ bookingData }: Props): React.ReactElement {
+export default function FullSumary({}: Props): React.ReactElement {
 	const { cart } = useCartStore()
 
 	return (

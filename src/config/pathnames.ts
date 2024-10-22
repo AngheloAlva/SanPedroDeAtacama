@@ -47,6 +47,78 @@ export const pathnames = {
 		pt: "/carrinho/checkout/pagamento/[bookingId]",
 		fr: "/panier/checkout/paiement/[bookingId]",
 	},
+	"/services": {
+		es: "/servicios",
+		en: "/services",
+		pt: "/servicos",
+		fr: "/services",
+	},
+	"/about-destiny/[destiny-id]": {
+		es: "/acerca-del-destino/[destiny-id]",
+		en: "/about-destiny/[destiny-id]",
+		pt: "/sobre-o-destino/[destiny-id]",
+		fr: "/a-propos-de-la-destination/[destiny-id]",
+	},
+	"/about-destiny/como-llegar": {
+		es: "/acerca-del-destino/como-llegar",
+		en: "/about-destiny/how-to-get-there",
+		pt: "/sobre-o-destino/como-chegar",
+		fr: "/a-propos-de-la-destination/comment-arriver",
+	},
+	"/about-destiny/festividades-y-eventos": {
+		es: "/acerca-del-destino/festividades-y-eventos",
+		en: "/about-destiny/festivities-and-events",
+		pt: "/sobre-o-destino/festividades-e-eventos",
+		fr: "/a-propos-de-la-destination/festivites-et-evenements",
+	},
+	"/about-us/faq": {
+		es: "/acerca-de-nosotros/preguntas-frecuentes",
+		en: "/about-us/faq",
+		pt: "/sobre-nos/faq",
+		fr: "/a-propos-de-nous/faq",
+	},
+	"/about-us/our-team": {
+		es: "/acerca-de-nosotros/nuestro-equipo",
+		en: "/about-us/our-team",
+		pt: "/sobre-nos/nossa-equipe",
+		fr: "/a-propos-de-nous/notre-equipe",
+	},
+	"/about-us/sustainability": {
+		es: "/acerca-de-nosotros/sustentabilidad",
+		en: "/about-us/sustainability",
+		pt: "/sobre-nos/sustentabilidade",
+		fr: "/a-propos-de-nous/soutenabilite",
+	},
+	"/about-us/our-history": {
+		es: "/acerca-de-nosotros/nuestra-historia",
+		en: "/about-us/our-history",
+		pt: "/sobre-nos/nossa-historia",
+		fr: "/a-propos-de-nous/notre-histoire",
+	},
+	"/about-us/sustentability": {
+		es: "/acerca-de-nosotros/sustentabilidad",
+		en: "/about-us/sustentability",
+		pt: "/sobre-nos/sustentabilidade",
+		fr: "/a-propos-de-nous/soutenabilite",
+	},
+	"/about-us/policies": {
+		es: "/acerca-de-nosotros/politicas",
+		en: "/about-us/policies",
+		pt: "/sobre-nos/politicas",
+		fr: "/a-propos-de-nous/politiques",
+	},
+	"/contact": {
+		es: "/contacto",
+		en: "/contact",
+		pt: "/contato",
+		fr: "/contact",
+	},
+	"/work-with-us": {
+		es: "/trabaja-con-nosotros",
+		en: "/work-with-us",
+		pt: "/trabalhe-conosco",
+		fr: "/travailler-avec-nous",
+	},
 
 	// Admin
 	"/admin/dashboard": {

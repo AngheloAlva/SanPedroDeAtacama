@@ -21,7 +21,6 @@ export default function BookingTable({
 					<TableHead>Status</TableHead>
 					<TableHead>Total</TableHead>
 					<TableHead className="hidden md:table-cell">Email</TableHead>
-					<TableHead className="hidden md:table-cell">Phone</TableHead>
 					<TableHead>
 						<span className="sr-only">Acciones</span>
 					</TableHead>

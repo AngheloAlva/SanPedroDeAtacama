@@ -48,18 +48,6 @@ export default function Menu(): React.ReactElement {
 							aria-hidden
 							className="-mt-2 h-[7px] w-full rounded-full bg-black transition-all duration-200 group-data-[state=open]:translate-y-3 lg:-mt-4"
 						></div>
-						<Link href={"/booking"} className="px-3 pb-8 pt-10 lg:px-4 xl:px-5">
-							{navbarT(`book`)}
-						</Link>
-					</NavigationMenuTrigger>
-				</NavigationMenuItem>
-
-				<NavigationMenuItem>
-					<NavigationMenuTrigger className="flex cursor-default flex-col items-center bg-transparent p-0">
-						<div
-							aria-hidden
-							className="-mt-2 h-[7px] w-full rounded-full bg-black transition-all duration-200 group-data-[state=open]:translate-y-3 lg:-mt-4"
-						></div>
 						<Link href={"/services"} className="px-3 pb-8 pt-10 lg:px-4 xl:px-5">
 							{navbarT(`services`)}
 						</Link>

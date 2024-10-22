@@ -8,7 +8,7 @@ const config = {
 	baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
 }
 
-export async function POST(request: Request) {
+export async function POST() {
 	//Prepara los parámetros
 	const params = {
 		commerceOrder: Math.floor(Math.random() * (2000 - 1100 + 1)) + 1100,
