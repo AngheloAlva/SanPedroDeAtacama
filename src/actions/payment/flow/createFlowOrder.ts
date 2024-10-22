@@ -1,6 +1,10 @@
 "use server"
 
+import { db } from "@/db"
+import { booking } from "@/db/schema/booking"
+import { paymentMethodsTax } from "@/lib/consts/paymentMethodsTax"
 import { FlowApi } from "@/lib/flowApi"
+import { eq } from "drizzle-orm"
 
 const config = {
 	apiKey: process.env.FLOW_API_KEY!,
@@ -11,12 +15,24 @@ const config = {
 export const createFlowOrder = async (bookingId: string, amount: number, userEmail: string) => {
 	try {
 		const flowApi = new FlowApi(config)
+
+		const [dbBooking] = await db.select().from(booking).where(eq(booking.id, bookingId))
+
+		if (!dbBooking || dbBooking.total_price_clp !== amount) {
+			throw new Error("Booking not found")
+		}
+
+		const amountWithTax = (
+			dbBooking.total_price_clp +
+			dbBooking.total_price_clp * paymentMethodsTax.flow
+		).toFixed(2)
+
 		const params = {
 			commerceOrder: bookingId,
-			subject: "Pago de reserva",
 			currency: "CLP",
-			amount: amount,
 			email: userEmail,
+			amount: amountWithTax,
+			subject: "Pago de reserva",
 			urlConfirmation: `${process.env.NEXT_PUBLIC_BASE_URL}/api/flow/payment-confirm`,
 			urlReturn: `${process.env.NEXT_PUBLIC_BASE_URL}/api/flow/result`,
 			optional: JSON.stringify({ bookingId }),

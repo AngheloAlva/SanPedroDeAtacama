@@ -26,10 +26,10 @@ export default function FlowButton({
 				window.location.href = response.redirect
 			} else {
 				console.error("Error creating Flow order")
+				setIsLoading(false)
 			}
 		} catch (error) {
 			console.error("Error processing Flow payment:", error)
-		} finally {
 			setIsLoading(false)
 		}
 	}
@@ -41,7 +41,7 @@ export default function FlowButton({
 				disabled={isLoading}
 				className="mb-1 h-10 cursor-pointer bg-green px-8 text-base font-bold uppercase tracking-widest hover:bg-green hover:brightness-90"
 			>
-				{isLoading ? "Procesando..." : "Pagar con Flow"}
+				{isLoading ? "Procesando..." : "Pagar"}
 			</Button>
 		</div>
 	)

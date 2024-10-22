@@ -5,6 +5,7 @@ import { db } from "@/db"
 import { z } from "zod"
 
 import { checkoutSchema } from "../../lib/schemas/general/checkout.schema"
+import { getAllCurrenciesValues } from "../currency/getCurrency"
 import { booking_item } from "@/db/schema/booking-item"
 import { excursion } from "@/db/schema/excursion"
 import { attendde } from "@/db/schema/attendde"
@@ -36,7 +37,7 @@ export const createBooking = async ({ cart, bookingData }: CreateBookingProps) =
 			const [newBooking] = await trx
 				.insert(booking)
 				.values({
-					total_price: 0,
+					total_price_clp: 0,
 					status: "pending",
 					email: validatedData.attendees[0].email || "",
 				})
@@ -55,7 +56,7 @@ export const createBooking = async ({ cart, bookingData }: CreateBookingProps) =
 					throw new Error("Price is required")
 				}
 
-				if (new Date(item.date) < new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000)) {
+				if (new Date(item.date) < new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000)) {
 					throw new Error("Date is invalid")
 				}
 
@@ -89,6 +90,7 @@ export const createBooking = async ({ cart, bookingData }: CreateBookingProps) =
 						booking_id: bookingId,
 						[item.modality === "excursion" ? "excursion_id" : "program_id"]: item.id,
 						price: currentPrice,
+						excursion_name: item.name,
 						date:
 							item.date instanceof Date
 								? item.date.toISOString()
@@ -113,7 +115,23 @@ export const createBooking = async ({ cart, bookingData }: CreateBookingProps) =
 				totalPrice += currentPrice * validatedData.attendees.length
 			}
 
-			await trx.update(booking).set({ total_price: totalPrice }).where(eq(booking.id, bookingId))
+			const currencyValues = await getAllCurrenciesValues()
+
+			if (!currencyValues || !("CLP" in currencyValues)) {
+				throw new Error("Error getting currency values or CLP not found")
+			}
+
+			const usdPrice = parseFloat((totalPrice / currencyValues.CLP).toFixed(2))
+			const brlPrice = parseFloat((usdPrice * currencyValues.BRL).toFixed(2))
+
+			await trx
+				.update(booking)
+				.set({
+					total_price_clp: totalPrice,
+					total_price_usd: usdPrice,
+					total_price_brl: brlPrice,
+				})
+				.where(eq(booking.id, bookingId))
 
 			await trx.insert(payment).values({
 				booking_id: bookingId,

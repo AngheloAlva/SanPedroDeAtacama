@@ -11,6 +11,7 @@ import {
 } from "@paypal/react-paypal-js"
 
 import { Skeleton } from "@/components/ui/skeleton"
+import { paymentMethodsTax } from "@/lib/consts/paymentMethodsTax"
 
 export default function PaypalButton({
 	amount,
@@ -31,7 +32,7 @@ export default function PaypalButton({
 					invoice_id: bookingId,
 					amount: {
 						currency_code: currency,
-						value: `${amount}`,
+						value: `${amount * paymentMethodsTax["paypal"]}`,
 					},
 				},
 			],

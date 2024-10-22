@@ -12,7 +12,7 @@ export const payment = sqliteTable("payment", {
 		.references(() => booking.id)
 		.notNull(),
 	payment_provider: text("payment_provider", {
-		enum: ["paypal", "flow", "wise", "bank_transfer"],
+		enum: ["paypal", "flow", "bank_transfer"],
 	}),
 	payment_status: text("payment_status", { enum: ["pending", "approved", "rejected"] })
 		.default("pending")

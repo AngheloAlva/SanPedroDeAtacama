@@ -23,6 +23,7 @@ import {
 	FormField,
 	FormControl,
 	FormMessage,
+	FormDescription,
 } from "@/components/ui/form"
 import {
 	Select,
@@ -82,7 +83,13 @@ export default function AttendeesForm(): React.ReactElement {
 			}
 		} catch (error) {
 			console.error(error)
-		} finally {
+			toast({
+				title: "Error al crear la reserva",
+				description: "Ocurrió un error inesperado",
+				variant: "destructive",
+				duration: 5000,
+			})
+
 			setIsSubmitting(false)
 		}
 	}
@@ -94,7 +101,10 @@ export default function AttendeesForm(): React.ReactElement {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full sm:mt-4 md:mt-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full overflow-visible sm:mt-4 md:mt-6"
+			>
 				<section>
 					<h2 className="mb-2 text-2xl font-bold md:text-3xl">Datos de los asistentes</h2>
 
@@ -200,6 +210,10 @@ export default function AttendeesForm(): React.ReactElement {
 																		placeholder="Nombre Completo"
 																		{...field}
 																	/>
+																	<FormDescription>
+																		El email será utilizado para enviar la confirmación de la
+																		reserva, y solo debera ingresarse una vez.
+																	</FormDescription>
 																	<FormMessage />
 																</FormItem>
 															)}

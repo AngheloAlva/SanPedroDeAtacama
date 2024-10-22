@@ -7,7 +7,9 @@ export const booking = sqliteTable("booking", {
 	id: text("id")
 		.$defaultFn(() => uuidv4())
 		.primaryKey(),
-	total_price: integer("total_price"),
+	total_price_clp: integer("total_price_clp"),
+	total_price_usd: integer("total_price_usd"),
+	total_price_brl: integer("total_price_brl"),
 	email: text("email").notNull(),
 	status: text("status", { enum: ["pending", "confirmed", "cancelled"] })
 		.default("pending")

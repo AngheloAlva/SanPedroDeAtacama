@@ -6,6 +6,11 @@ export async function POST(request: Request) {
 	const token = body.get("token") as string
 
 	const result = await checkFlowPayment(token)
+	console.log({
+		result,
+		token,
+		body,
+	})
 
 	if (result.ok) {
 		// Redirige al usuario a una página de éxito
