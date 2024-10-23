@@ -1,12 +1,15 @@
 import { getBookingById } from "@/actions/booking/getBooking"
 import { notFound } from "next/navigation"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 import PaymentSelector from "@/components/sections/payment/PaymentSelector"
 import StepsCard from "@/components/cart/StepsCard"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+
+import type { Locale } from "@/types/locales"
+import { getTranslations } from "next-intl/server"
 
 export default async function PaymentPage({
 	params,
@@ -14,6 +17,7 @@ export default async function PaymentPage({
 	params: { locale: string; bookingId: string }
 }): Promise<React.ReactElement> {
 	const data = await getBookingById(params.bookingId)
+	const t = await getTranslations("PaymentPage.payment")
 
 	if (data === null) {
 		notFound()
@@ -25,7 +29,7 @@ export default async function PaymentPage({
 		<StepsCard step={3}>
 			<div className="flex w-full flex-col gap-4 sm:mt-4 md:mt-6">
 				<div className="flex flex-wrap items-center justify-between gap-x-2">
-					<h1 className="text-2xl font-bold">Pago de reserva</h1>
+					<h1 className="text-2xl font-bold">{t("title")}</h1>
 					<Badge
 						className={cn(
 							"h-fit",
@@ -35,28 +39,29 @@ export default async function PaymentPage({
 						)}
 					>
 						{booking.status === "pending"
-							? "Pending"
+							? t("status.pending")
 							: booking.status === "confirmed"
-								? "Confirmed"
-								: "Cancelled"}
+								? t("status.confirmed")
+								: t("status.cancelled")}
 					</Badge>
 				</div>
 
-				{booking.status !== "confirmed" && (
-					<PaymentSelector booking={booking} bookingItems={bookingItems} />
+				{booking.status === "pending" && (
+					<PaymentSelector
+						booking={booking}
+						bookingItems={bookingItems}
+						locale={params.locale as Locale}
+					/>
 				)}
 
 				{booking.status === "confirmed" && (
 					<div className="my-14 text-center">
-						<h2 className="text-xl font-bold md:text-2xl">¡Reserva confirmada!</h2>
-						<p className="mx-auto max-w-md md:text-lg">
-							¡Gracias por confiar en nosotros! Pronto recibirás un correo con los detalles de tu
-							reserva.
-						</p>
+						<h2 className="text-xl font-bold md:text-2xl">{t("confirmed.title")}</h2>
+						<p className="mx-auto max-w-md md:text-lg">{t("confirmed.description")}</p>
 
 						<Link href={"/"} passHref>
 							<Button className="mt-6 bg-orange hover:bg-orange hover:brightness-90">
-								Volver a la página principal
+								{t("confirmed.button")}
 							</Button>
 						</Link>
 					</div>
@@ -64,15 +69,12 @@ export default async function PaymentPage({
 
 				{booking.status === "cancelled" && (
 					<div className="my-14 text-center">
-						<h2 className="text-xl font-bold md:text-2xl">¡Reserva cancelada!</h2>
-						<p className="mx-auto max-w-md md:text-lg">
-							¡Lo sentimos! Tu reserva ha sido cancelada. Si tienes alguna duda, por favor contacta
-							con nosotros.
-						</p>
+						<h2 className="text-xl font-bold md:text-2xl">{t("cancelled.title")}</h2>
+						<p className="mx-auto max-w-md md:text-lg">{t("cancelled.description")}</p>
 
 						<Link href={"/"} passHref>
 							<Button className="mt-6 bg-orange hover:bg-orange hover:brightness-90">
-								Volver a la página principal
+								{t("cancelled.button")}
 							</Button>
 						</Link>
 					</div>

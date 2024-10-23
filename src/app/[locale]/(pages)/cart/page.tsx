@@ -1,7 +1,7 @@
 import SumarySection from "@/components/cart/SumarySection"
 import CartSection from "@/components/cart/CartSection"
-import StepsCard from "@/components/cart/StepsCard"
 import { Separator } from "@/components/ui/separator"
+import StepsCard from "@/components/cart/StepsCard"
 
 export default async function CartPage(): Promise<React.ReactElement> {
 	return (

@@ -38,12 +38,15 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useTranslations } from "next-intl"
 
 export default function AttendeesForm(): React.ReactElement {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const { cart, clearCart } = useCartStore()
 	const { toast } = useToast()
 	const router = useRouter()
+
+	const t = useTranslations("CheckoutPage.checkout")
 
 	const form = useForm<z.infer<typeof checkoutSchema>>({
 		resolver: zodResolver(checkoutSchema),
@@ -106,11 +109,11 @@ export default function AttendeesForm(): React.ReactElement {
 				className="w-full overflow-visible sm:mt-4 md:mt-6"
 			>
 				<section>
-					<h2 className="mb-2 text-2xl font-bold md:text-3xl">Datos de los asistentes</h2>
+					<h2 className="mb-2 text-2xl font-bold md:text-3xl">{t("title")}</h2>
 
 					<div>
 						<div className="grid">
-							<h3 className="mb-1 text-xl font-semibold md:text-2xl">Itinerario:</h3>
+							<h3 className="mb-1 text-xl font-semibold md:text-2xl">{t("itinerary")}</h3>
 							<ul className="">
 								{cart.map((item) => (
 									<li key={item.id} className="flex items-center">
@@ -128,9 +131,9 @@ export default function AttendeesForm(): React.ReactElement {
 									name={`accommodation`}
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Hospedaje</FormLabel>
+											<FormLabel>{t("form.accommodation.label")}</FormLabel>
 											<FormControl>
-												<Input placeholder="Hospedaje" {...field} />
+												<Input placeholder={t("form.accommodation.placeholder")} {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -142,12 +145,9 @@ export default function AttendeesForm(): React.ReactElement {
 									name={`comment`}
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Comentario</FormLabel>
+											<FormLabel>{t("form.comment.label")}</FormLabel>
 											<FormControl>
-												<Textarea
-													placeholder="Puedes indicar alguna preferencia alimenticia o requerimiento especial."
-													{...field}
-												/>
+												<Textarea placeholder={t("form.comment.placeholder")} {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -165,7 +165,9 @@ export default function AttendeesForm(): React.ReactElement {
 									<AccordionItem key={field.id} value={field.id}>
 										<AccordionTrigger>
 											<div className="mt-4 flex items-center justify-between gap-4 sm:mt-0">
-												<Label className="text-base font-semibold">Persona {index + 1}</Label>
+												<Label className="text-base font-semibold">
+													{t("form.person", { number: index + 1 })}
+												</Label>
 												{index > 0 && (
 													<Button
 														type="button"
@@ -186,11 +188,11 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.fullName`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>Nombre Completo</FormLabel>
+																<FormLabel>{t("form.name.label")}</FormLabel>
 																<Input
 																	type="text"
 																	className="w-full"
-																	placeholder="Nombre Completo"
+																	placeholder={t("form.name.placeholder")}
 																	{...field}
 																/>
 																<FormMessage />
@@ -203,17 +205,14 @@ export default function AttendeesForm(): React.ReactElement {
 															name={`attendees.${index}.email`}
 															render={({ field }) => (
 																<FormItem>
-																	<FormLabel>Email</FormLabel>
+																	<FormLabel>{t("form.email.label")}</FormLabel>
 																	<Input
 																		type="email"
 																		className="w-full"
-																		placeholder="Nombre Completo"
+																		placeholder={t("form.email.placeholder")}
 																		{...field}
 																	/>
-																	<FormDescription>
-																		El email será utilizado para enviar la confirmación de la
-																		reserva, y solo debera ingresarse una vez.
-																	</FormDescription>
+																	<FormDescription>{t("form.email.description")}</FormDescription>
 																	<FormMessage />
 																</FormItem>
 															)}
@@ -225,12 +224,12 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.age`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>Edad</FormLabel>
+																<FormLabel>{t("form.age.label")}</FormLabel>
 																<Input
 																	min={0}
 																	type="number"
 																	className="w-full"
-																	placeholder="Edad"
+																	placeholder={t("form.age.placeholder")}
 																	{...field}
 																/>
 																<FormMessage />
@@ -242,11 +241,11 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.documentNumber`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>Numero de Documento</FormLabel>
+																<FormLabel>{t("form.documentNumber.label")}</FormLabel>
 																<Input
 																	type="text"
 																	className="w-full"
-																	placeholder="Numero de Documento"
+																	placeholder={t("form.documentNumber.placeholder")}
 																	{...field}
 																/>
 																<FormMessage />
@@ -258,11 +257,11 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.country`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>País</FormLabel>
+																<FormLabel>{t("form.country.label")}</FormLabel>
 																<Input
 																	type="text"
 																	className="w-full"
-																	placeholder="País"
+																	placeholder={t("form.country.placeholder")}
 																	{...field}
 																/>
 																<FormMessage />
@@ -274,11 +273,11 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.phone`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>Telefono</FormLabel>
+																<FormLabel>{t("form.phone.label")}</FormLabel>
 																<Input
 																	type="tel"
 																	className="w-full"
-																	placeholder="Telefono"
+																	placeholder={t("form.phone.placeholder")}
 																	{...field}
 																/>
 																<FormMessage />
@@ -290,7 +289,7 @@ export default function AttendeesForm(): React.ReactElement {
 														name={`attendees.${index}.foodPreference`}
 														render={({ field }) => (
 															<FormItem>
-																<FormLabel>Preferencia alimenticia</FormLabel>
+																<FormLabel>{t("form.foodPreference.label")}</FormLabel>
 																<Select onValueChange={field.onChange} defaultValue={field.value}>
 																	<FormControl>
 																		<SelectTrigger>
@@ -298,16 +297,36 @@ export default function AttendeesForm(): React.ReactElement {
 																		</SelectTrigger>
 																	</FormControl>
 																	<SelectContent>
-																		<SelectItem value="vegetariano">Vegetariano</SelectItem>
-																		<SelectItem value="vegano">Vegano</SelectItem>
-																		<SelectItem value="celiaco">Celiaco</SelectItem>
-																		<SelectItem value="ninguna">Ninguna</SelectItem>
+																		<SelectItem value={t("form.foodPreference.items.0.id")}>
+																			{t("form.foodPreference.items.0.name")}
+																		</SelectItem>
+																		<SelectItem value={t("form.foodPreference.items.1.id")}>
+																			{t("form.foodPreference.items.1.name")}
+																		</SelectItem>
+																		<SelectItem value={t("form.foodPreference.items.2.id")}>
+																			{t("form.foodPreference.items.2.name")}
+																		</SelectItem>
+																		<SelectItem value={t("form.foodPreference.items.3.id")}>
+																			{t("form.foodPreference.items.3.name")}
+																		</SelectItem>
+																		<SelectItem value={t("form.foodPreference.items.4.id")}>
+																			{t("form.foodPreference.items.4.name")}
+																		</SelectItem>
 																	</SelectContent>
 																</Select>
 																<FormMessage />
 															</FormItem>
 														)}
 													/>
+
+													{/* // TODO: Implementar campo de texto para otra preferencia de comida
+													{form.watch(`attendees.${index}.foodPreference`) === "otra" && (
+														<Input
+															type="text"
+															className="w-full"
+															placeholder={t("form.foodPreference.other.placeholder")}
+														/>
+													)} */}
 												</div>
 											</div>
 										</AccordionContent>
@@ -332,7 +351,7 @@ export default function AttendeesForm(): React.ReactElement {
 										variant={"outline"}
 										className="w-full sm:max-w-72"
 									>
-										Agregar persona
+										{t("form.addPerson")}
 									</Button>
 								</div>
 							)}
@@ -347,7 +366,7 @@ export default function AttendeesForm(): React.ReactElement {
 					type="submit"
 					className="w-full bg-green text-base font-bold hover:bg-green hover:brightness-90"
 				>
-					{isSubmitting ? "Enviando..." : "Continuar con el pago"}
+					{isSubmitting ? "..." : t("form.submit")}
 				</Button>
 			</form>
 		</Form>

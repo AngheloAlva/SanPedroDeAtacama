@@ -32,7 +32,7 @@ export default function PaypalButton({
 					invoice_id: bookingId,
 					amount: {
 						currency_code: currency,
-						value: `${amount * paymentMethodsTax["paypal"]}`,
+						value: `${(amount + amount * paymentMethodsTax["paypal"]).toFixed(2)}`,
 					},
 				},
 			],

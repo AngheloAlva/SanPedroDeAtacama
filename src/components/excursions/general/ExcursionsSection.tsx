@@ -23,7 +23,7 @@ export default function ExcursionsSection({
 				</p>
 			</div>
 
-			<div className="grid grid-cols-1 gap-4 gap-x-4 gap-y-4 px-4 pb-12 pt-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+			<div className="grid grid-cols-1 gap-4 gap-x-4 gap-y-4 px-4 pb-12 pt-5 sm:grid-cols-2 lg:grid-cols-3">
 				{excursions.length === 0 && (
 					<InfoCard
 						icon={<PiInfo className="-mt-0.5 mr-2 inline-block h-6 w-6 text-red-900" />}

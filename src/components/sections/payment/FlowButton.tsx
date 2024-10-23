@@ -1,6 +1,7 @@
 "use client"
 
 import { createFlowOrder } from "@/actions/payment/flow/createFlowOrder"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -17,6 +18,7 @@ export default function FlowButton({
 	userEmail,
 }: FlowButtonProps): React.ReactElement {
 	const [isLoading, setIsLoading] = useState(false)
+	const t = useTranslations("PaymentPage.payment.paymentMethod")
 
 	const handleFlowPayment = async () => {
 		setIsLoading(true)
@@ -41,7 +43,7 @@ export default function FlowButton({
 				disabled={isLoading}
 				className="mb-1 h-10 cursor-pointer bg-green px-8 text-base font-bold uppercase tracking-widest hover:bg-green hover:brightness-90"
 			>
-				{isLoading ? "Procesando..." : "Pagar"}
+				{isLoading ? "Procesando..." : t("flowButton")}
 			</Button>
 		</div>
 	)

@@ -49,10 +49,50 @@
         }
       }
     },
+    "excursions": {
+      "title": "Excursions",
+      "description": "Discover our private excursions in San Pedro de Atacama and explore the desert in a unique and exclusive way.",
+      "cta": "See more",
+      "notFound": "No excursions found"
+    },
     "programs": {
-      "button": "See more",
       "title": "Programs",
-      "imageAlt": "Atacama Desert"
+      "description": "Explore our programs in San Pedro de Atacama and discover the magic of the desert in an exclusive and personalized way.",
+      "cta": "See more",
+      "notFound": "No programs found"
+    },
+    "whyUs": {
+      "title": "Why choose us?",
+      "description": "In a destination as fascinating as San Pedro de Atacama, we know that you have many options to explore. However, our company stands out for offering a unique and personalized experience that combines comfort, adventure and authenticity. Here we tell you why we are your best option:",
+      "0": {
+        "title": "1. Local Knowledge and Experience",
+        "description": "Our team is made up of expert local guides who know every corner of the Atacama Desert. This allows us to offer you an authentic and in-depth perspective, not only of the most popular places, but also of the best kept secrets of the region. With us, you will have the opportunity to get to know the local culture, history and traditions in a closer and more enriching way."
+      },
+      "1": {
+        "title": "2. Guaranteed Safety",
+        "description": "Safety is our priority. All our excursions and activities are carried out under strict security measures and always with certified guides. Whether you are trekking in the Valley of the Moon, climbing a volcano or exploring the Salar de Atacama by bike, you can be sure that you will be in good hands."
+      },
+      "2": {
+        "title": "3. Customized Excursions",
+        "description": "We adapt to your preferences and needs. Whether you are looking for a quiet and relaxing experience or an exciting adventure, our excursion packages are fully customizable. From family tours to extreme adventures, we tailor your experience so you can enjoy your visit to the fullest."
+      },
+      "3": {
+        "title": "4. Commitment to the Environment",
+        "description": "We are a company committed to sustainability and environmental protection. Our responsible practices minimize the ecological impact of our activities, so you can enjoy the incredible Atacama landscape knowing that we are doing our part to preserve it for future generations."
+      },
+      "4": {
+        "title": "5. Personalized Attention and 24/7 Service",
+        "description": "We offer top-quality customer service, with a team available 24 hours a day to answer your questions, coordinate changes or assist you in any situation. We take care of all the details so you only have to worry about enjoying yourself."
+      },
+      "5": {
+        "title": "6. Variety of Activities",
+        "description": "From sunrise photography excursions to astronomical observation at night, we have a wide variety of activities designed for different tastes and ages. It doesn't matter if you travel alone, as a couple, with family or with friends, we have options for everyone."
+      },
+      "6": {
+        "title": "7. Added Value",
+        "description": "In addition to offering unique experiences, we guarantee added value to each of our tours. Whether it is with the use of specialized equipment, such as binoculars for astronomical observation, or with bilingual guides for a more enriching experience, we always seek to exceed expectations."
+      },
+      "conclusion": "Choosing us means opting for a complete, safe and enriching experience. We strive to make your visit to San Pedro de Atacama unforgettable, offering more than just a trip, but memories that will last a lifetime."
     },
     "aboutDestiny": "About the destination",
     "services": {
@@ -6212,6 +6252,114 @@
         "description": "Subscribe to our newsletter to receive the latest news and updates.",
         "input-placeholder": "Your email",
         "button": "Subscribe"
+      }
+    }
+  },
+  "CartPage": {
+    "title": "Shopping Cart | Turismochiletours",
+    "description": "Check your shopping cart and complete your order to book your tours and excursions in San Pedro de Atacama. Make sure you have everything ready to enjoy an unforgettable experience in the desert.",
+    "cart": {
+      "title": "Tours Itinerary",
+      "empty": "Your shopping cart is empty. Explore our tours and excursions to start planning your trip to San Pedro de Atacama.",
+      "emptyButton": "Explore Tours",
+      "resume": "Booking Summary",
+      "toursQuantity": "Number of Tours",
+      "totalPrice": "Total Price",
+      "checkout": "Checkout"
+    }
+  },
+  "CheckoutPage": {
+    "title": "Finalize Purchase | Turismochiletours",
+    "description": "Complete your purchase and book your tours and excursions in San Pedro de Atacama. Make sure to review all the details and provide the necessary information to ensure an unforgettable experience in the desert.",
+    "checkout": {
+      "title": "Attendee information",
+      "itinerary": "Tour itinerary: ",
+      "form": {
+        "accommodation": {
+          "label": "Accommodation",
+          "placeholder": "Accommodation name",
+          "notDefined": "I still don't have accommodation"
+        },
+        "comment": {
+          "label": "Additional comments",
+          "placeholder": "Add any comments or special requests"
+        },
+        "person": "Person {number}",
+        "name": {
+          "label": "Full name",
+          "placeholder": "Enter your full name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email",
+          "description": "The email will be used to send the reservation confirmation, and should only be entered once."
+        },
+        "age": {
+          "label": "Age",
+          "placeholder": "Enter your age"
+        },
+        "documentNumber": {
+          "label": "ID number",
+          "placeholder": "Enter your ID number"
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Indicate your country"
+        },
+        "phone": {
+          "label": "Phone number",
+          "placeholder": "Enter your phone number"
+        },
+        "foodPreference": {
+          "label": "Food preferences",
+          "placeholder": "Indicate if you have any dietary restrictions",
+          "items": {
+            "0": { "id": "Normal", "name": "Normal" },
+            "1": { "id": "Vegetariano", "name": "Vegetarian" },
+            "2": { "id": "Vegano", "name": "Vegan" },
+            "3": { "id": "Celiaco", "name": "Celiac" },
+            "4": { "id": "Otra", "name": "Other" }
+          },
+          "other": {
+            "label": "Other preference",
+            "placeholder": "Indicate your dietary preference"
+          }
+        },
+        "addPerson": "Add another person",
+        "removePerson": "Remove person",
+        "submit": "Continue with the page"
+      }
+    }
+  },
+  "PaymentPage": {
+    "title": "Payment | Turismochiletours",
+    "description": "Complete your purchase and book your tours and excursions in San Pedro de Atacama. Make sure to review all the details and provide the necessary information to ensure an unforgettable experience in the desert.",
+    "payment": {
+      "title": "Payment of the reservation",
+      "status": {
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "cancelled": "Canceled"
+      },
+      "paymentMethod": {
+        "title": "Select payment method:",
+        "totalNotAvailable": "Total not available",
+        "description": "Select the payment method you prefer and in the currency of your choice to complete the reservation of your tours and excursions in San Pedro de Atacama.",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "method": "Payment method",
+        "total": "Total",
+        "flowButton": "Pay"
+      },
+      "confirmed": {
+        "title": "Booking confirmed!",
+        "description": "Your booking has been successfully confirmed. You will receive an email with the details of your itinerary and the necessary information to enjoy your tours and excursions in San Pedro de Atacama.",
+        "button": "Back to home page"
+      },
+      "cancelled": {
+        "title": "Booking cancelled",
+        "description": "Your booking has been cancelled. If you have any questions or need more information, please do not hesitate to contact us via our email or phone number.",
+        "button": "Back to home page"
       }
     }
   }
